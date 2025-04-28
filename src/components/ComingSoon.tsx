@@ -36,7 +36,7 @@ const ComingSoon: React.FC = () => {
       <Logo />
       <h1 className="mt-8 text-4xl md:text-6xl font-light text-white tracking-wider">COMING SOON</h1>
       <p className="mt-4 text-md md:text-xl text-white/80 max-w-md text-center px-4">
-        We're working on something exciting. Stay tuned for our launch.
+        We're just warming up the fires. Stay tuned for a future that we can forge together.
       </p>
       <form onSubmit={handleSubmit} className="mt-12 flex flex-col items-center">
         <div className="inline-flex items-center justify-center relative overflow-hidden group">
