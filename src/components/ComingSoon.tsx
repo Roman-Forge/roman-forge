@@ -58,7 +58,7 @@ const ComingSoon: React.FC = () => {
         </div>
         {status === 'success' && <p className="text-green-400 text-xs mt-2">Thank you! You'll be notified.</p>}
         {status === 'error' && <p className="text-red-400 text-xs mt-2">Something went wrong. Try again.</p>}
-        <p className="text-white/60 text-xs mt-2">We'll notify you when we launch.</p>
+        <p className="text-white/60 text-sm mt-2 bold">We'll notify you when we launch.</p>
       </form>
     </div>
   );
