@@ -14,7 +14,6 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "posthog-js": "^1.240.6",
     "resend": "^4.5.1"
   },
   "devDependencies": {
