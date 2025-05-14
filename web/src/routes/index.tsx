@@ -9,6 +9,7 @@ export default function Index() {
     console.log("LOCAL", import.meta.env.VITE_FEATURE_LAUNCH === 'true');
 
     if (flagEnabled && window.location.origin === 'https://forge-5v1.pages.dev' || import.meta.env.VITE_FEATURE_LAUNCH === 'true' ) {
+        console.log('THIS RENDERED')
         return <HomePage />
     }
 
