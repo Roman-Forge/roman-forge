@@ -22,6 +22,15 @@ export default {
           },
         },
       },
+      fontFamily: {
+        lexend: ['Lexend', 'sans-serif'],
+        garamond: ['Cormorant Garamond', 'serif']
+      },
+      colors: {
+        sand: "#EFD7AB",
+        deepteal: "#123E3D",
+        deepblue: "#050912"
+      }
     },
   },
   plugins: [],
