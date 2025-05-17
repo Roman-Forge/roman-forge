@@ -37,7 +37,7 @@ export default function Layout() {
                     <img 
                         src="./logo-circle.png"
                         alt="Animated Roman Forge Logo"
-                        className="animate-[spin_200000ms_linear_infinite]"
+                        className="animate-[spin_2000000ms_linear_infinite]"
                     />
                 </div>
                 <Outlet />
