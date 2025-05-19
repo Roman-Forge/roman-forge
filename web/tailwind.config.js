@@ -5,6 +5,7 @@ export default {
     extend: {
       animation: {
         'gradient-shift': 'gradientShift 15s ease-in-out infinite alternate',
+        'spin-slow': 'spin 3s linear infinite'
       },
       keyframes: {
         gradientShift: {
@@ -30,6 +31,26 @@ export default {
         sand: "#EFD7AB",
         deepteal: "#123E3D",
         deepblue: "#050912"
+      },
+      blur: {
+        '2xl': '64px',
+      },
+      width: {
+        '10': '2.5rem', // 40px
+        '12': '3rem',   // 48px
+      },
+      height: {
+        '10': '2.5rem', // 40px
+        '12': '3rem',   // 48px
+      },
+      minHeight: {
+        '200px': '200px',
+      },
+      borderWidth: {
+        '0.5': '0.5px', // For thinner lines if needed
+      },
+      rotate: {
+        '20': '20deg',
       }
     },
   },

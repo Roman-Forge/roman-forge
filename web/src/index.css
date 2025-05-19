@@ -9,3 +9,23 @@ html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+@keyframes breath {
+  0%, 100% { transform: scale(0.95); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5%); }
+}
+
+.animate-breath-6s-1\.5s { animation: breath 6s ease-in-out 1.5s infinite both; }
+.animate-breath-6s-2s { animation: breath 6s ease-in-out 2s infinite both; }
+.animate-float-4s-1s { animation: float 4s ease-in-out infinite 1s both; }
+.animate-float-4s-2s { animation: float 4s ease-in-out infinite 2s both; }
+.center-logo:before {
+  background: conic-gradient(from 180deg,transparent, #123E3D) border-box;
+  mask: linear-gradient(white 0 0) padding-box,linear-gradient(white 0 0);
+  mask-composite: exclude !important;
+}
