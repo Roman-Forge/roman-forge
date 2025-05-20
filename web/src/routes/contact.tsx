@@ -1,173 +1,179 @@
-import { BuildingOffice2Icon, EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline'
 
 export default function Contact() {
-    return (
-        <div className="relative isolate bg-gray-900">
-          <div className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2">
-            <div className="relative px-6 pb-20 pt-24 sm:pt-32 lg:static lg:px-8 lg:py-48">
-              <div className="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
-                <div className="absolute inset-y-0 left-0 -z-10 w-full overflow-hidden ring-1 ring-white/5 lg:w-1/2">
-                  <svg
-                    aria-hidden="true"
-                    className="absolute inset-0 size-full stroke-gray-700 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
-                  >
-                    <defs>
-                      <pattern
-                        x="100%"
-                        y={-1}
-                        id="54f88622-e7f8-4f1d-aaf9-c2f5e46dd1f2"
-                        width={200}
-                        height={200}
-                        patternUnits="userSpaceOnUse"
-                      >
-                        <path d="M130 200V.5M.5 .5H200" fill="none" />
-                      </pattern>
-                    </defs>
-                    <svg x="100%" y={-1} className="overflow-visible fill-gray-800/20">
-                      <path d="M-470.5 0h201v201h-201Z" strokeWidth={0} />
-                    </svg>
-                    <rect fill="url(#54f88622-e7f8-4f1d-aaf9-c2f5e46dd1f2)" width="100%" height="100%" strokeWidth={0} />
-                  </svg>
-                  <div
-                    aria-hidden="true"
-                    className="absolute -left-56 top-[calc(100%-13rem)] transform-gpu blur-3xl lg:left-[max(-14rem,calc(100%-59rem))] lg:top-[calc(50%-7rem)]"
-                  >
-                    <div
-                      style={{
-                        clipPath:
-                          'polygon(74.1% 56.1%, 100% 38.6%, 97.5% 73.3%, 85.5% 100%, 80.7% 98.2%, 72.5% 67.7%, 60.2% 37.8%, 52.4% 32.2%, 47.5% 41.9%, 45.2% 65.8%, 27.5% 23.5%, 0.1% 35.4%, 17.9% 0.1%, 27.6% 23.5%, 76.1% 2.6%, 74.1% 56.1%)',
-                      }}
-                      className="aspect-[1155/678] w-[72.1875rem] bg-gradient-to-br from-[#80caff] to-[#4f46e5] opacity-20"
+  return (
+    <div className="relative bg-white">
+      <div className="lg:absolute lg:inset-0 lg:left-1/2">
+        <img
+          alt=""
+          src="https://images.unsplash.com/photo-1630413952708-30e145d3d475?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&crop=focalpoint&fp-x=.4&w=2560&h=3413&&q=80"
+          className="h-64 w-full bg-gray-50 object-cover sm:h-80 lg:absolute lg:h-full"
+        />
+      </div>
+      <div className="pb-24 pt-16 sm:pb-32 sm:pt-24 lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2 lg:pt-32">
+        <div className="px-6 lg:px-8">
+          <div className="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
+            <h2 className="text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+              We are here to help
+            </h2>
+            <p className="mt-2 text-lg/8 text-gray-600">
+              Let's forge a future together that is built to last.
+            </p>
+            <form action="#" method="POST" className="mt-16">
+              <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+                <div>
+                  <label htmlFor="first-name" className="block text-sm/6 font-semibold text-gray-900">
+                    First name
+                  </label>
+                  <div className="mt-2.5">
+                    <input
+                      id="first-name"
+                      name="first-name"
+                      type="text"
+                      autoComplete="given-name"
+                      className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
                     />
                   </div>
                 </div>
-                <h2 className="text-pretty text-4xl font-semibold tracking-tight text-white sm:text-5xl">Get in touch</h2>
-                <p className="mt-6 text-lg/8 text-gray-300">
-                  Proin volutpat consequat porttitor cras nullam gravida at. Orci molestie a eu arcu. Sed ut tincidunt
-                  integer elementum id sem. Arcu sed malesuada et magna.
-                </p>
-                <dl className="mt-10 space-y-4 text-base/7 text-gray-300">
-                  <div className="flex gap-x-4">
-                    <dt className="flex-none">
-                      <span className="sr-only">Address</span>
-                      <BuildingOffice2Icon aria-hidden="true" className="h-7 w-6 text-gray-400" />
-                    </dt>
-                    <dd>
-                      545 Mavis Island
-                      <br />
-                      Chicago, IL 99191
-                    </dd>
+                <div>
+                  <label htmlFor="last-name" className="block text-sm/6 font-semibold text-gray-900">
+                    Last name
+                  </label>
+                  <div className="mt-2.5">
+                    <input
+                      id="last-name"
+                      name="last-name"
+                      type="text"
+                      autoComplete="family-name"
+                      className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+                    />
                   </div>
-                  <div className="flex gap-x-4">
-                    <dt className="flex-none">
-                      <span className="sr-only">Telephone</span>
-                      <PhoneIcon aria-hidden="true" className="h-7 w-6 text-gray-400" />
-                    </dt>
-                    <dd>
-                      <a href="tel:+1 (555) 234-5678" className="hover:text-white">
-                        +1 (555) 234-5678
-                      </a>
-                    </dd>
+                </div>
+                <div className="sm:col-span-2">
+                  <label htmlFor="email" className="block text-sm/6 font-semibold text-gray-900">
+                    Email
+                  </label>
+                  <div className="mt-2.5">
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+                    />
                   </div>
-                  <div className="flex gap-x-4">
-                    <dt className="flex-none">
-                      <span className="sr-only">Email</span>
-                      <EnvelopeIcon aria-hidden="true" className="h-7 w-6 text-gray-400" />
-                    </dt>
-                    <dd>
-                      <a href="mailto:hello@example.com" className="hover:text-white">
-                        hello@example.com
-                      </a>
-                    </dd>
+                </div>
+                <div className="sm:col-span-2">
+                  <label htmlFor="company" className="block text-sm/6 font-semibold text-gray-900">
+                    Company
+                  </label>
+                  <div className="mt-2.5">
+                    <input
+                      id="company"
+                      name="company"
+                      type="text"
+                      autoComplete="organization"
+                      className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+                    />
                   </div>
-                </dl>
+                </div>
+                <div className="sm:col-span-2">
+                  <div className="flex justify-between text-sm/6">
+                    <label htmlFor="phone" className="block font-semibold text-gray-900">
+                      Phone
+                    </label>
+                    <p id="phone-description" className="text-gray-400">
+                      Optional
+                    </p>
+                  </div>
+                  <div className="mt-2.5">
+                    <input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      autoComplete="tel"
+                      aria-describedby="phone-description"
+                      className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+                    />
+                  </div>
+                </div>
+                <div className="sm:col-span-2">
+                  <div className="flex justify-between text-sm/6">
+                    <label htmlFor="message" className="block text-sm/6 font-semibold text-gray-900">
+                      How can we help you?
+                    </label>
+                    <p id="message-description" className="text-gray-400">
+                      Max 500 characters
+                    </p>
+                  </div>
+                  <div className="mt-2.5">
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows={4}
+                      aria-describedby="message-description"
+                      className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+                      defaultValue={''}
+                    />
+                  </div>
+                </div>
+                <fieldset className="sm:col-span-2">
+                  <legend className="block text-sm/6 font-semibold text-gray-900">Expected budget</legend>
+                  <div className="mt-4 space-y-4 text-sm/6 text-gray-600">
+                    <div className="flex gap-x-2.5">
+                      <input
+                        defaultValue="under_25k"
+                        id="budget-under-25k"
+                        name="budget"
+                        type="radio"
+                        className="relative mt-1 size-4 appearance-none rounded-full border border-gray-300 before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden"
+                      />
+                      <label htmlFor="budget-under-25k">Less than $25K</label>
+                    </div>
+                    <div className="flex gap-x-2.5">
+                      <input
+                        defaultValue="25k-50k"
+                        id="budget-25k-50k"
+                        name="budget"
+                        type="radio"
+                        className="relative mt-1 size-4 appearance-none rounded-full border border-gray-300 before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden"
+                      />
+                      <label htmlFor="budget-25k-50k">$25K – $50K</label>
+                    </div>
+                    <div className="flex gap-x-2.5">
+                      <input
+                        defaultValue="50k-100k"
+                        id="budget-50k-100k"
+                        name="budget"
+                        type="radio"
+                        className="relative mt-1 size-4 appearance-none rounded-full border border-gray-300 before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden"
+                      />
+                      <label htmlFor="budget-50k-100k">$50K – $100K</label>
+                    </div>
+                    <div className="flex gap-x-2.5">
+                      <input
+                        defaultValue="over_100k"
+                        id="budget-over-100k"
+                        name="budget"
+                        type="radio"
+                        className="relative mt-1 size-4 appearance-none rounded-full border border-gray-300 before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden"
+                      />
+                      <label htmlFor="budget-over-100k">$100K+</label>
+                    </div>
+                  </div>
+                </fieldset>
               </div>
-            </div>
-            <form action="#" method="POST" className="px-6 pb-24 pt-20 sm:pb-32 lg:px-8 lg:py-48">
-              <div className="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
-                <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-                  <div>
-                    <label htmlFor="first-name" className="block text-sm/6 font-semibold text-white">
-                      First name
-                    </label>
-                    <div className="mt-2.5">
-                      <input
-                        id="first-name"
-                        name="first-name"
-                        type="text"
-                        autoComplete="given-name"
-                        className="block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white outline outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <label htmlFor="last-name" className="block text-sm/6 font-semibold text-white">
-                      Last name
-                    </label>
-                    <div className="mt-2.5">
-                      <input
-                        id="last-name"
-                        name="last-name"
-                        type="text"
-                        autoComplete="family-name"
-                        className="block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white outline outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500"
-                      />
-                    </div>
-                  </div>
-                  <div className="sm:col-span-2">
-                    <label htmlFor="email" className="block text-sm/6 font-semibold text-white">
-                      Email
-                    </label>
-                    <div className="mt-2.5">
-                      <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        autoComplete="email"
-                        className="block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white outline outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500"
-                      />
-                    </div>
-                  </div>
-                  <div className="sm:col-span-2">
-                    <label htmlFor="phone-number" className="block text-sm/6 font-semibold text-white">
-                      Phone number
-                    </label>
-                    <div className="mt-2.5">
-                      <input
-                        id="phone-number"
-                        name="phone-number"
-                        type="tel"
-                        autoComplete="tel"
-                        className="block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white outline outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500"
-                      />
-                    </div>
-                  </div>
-                  <div className="sm:col-span-2">
-                    <label htmlFor="message" className="block text-sm/6 font-semibold text-white">
-                      Message
-                    </label>
-                    <div className="mt-2.5">
-                      <textarea
-                        id="message"
-                        name="message"
-                        rows={4}
-                        className="block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white outline outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500"
-                        defaultValue={''}
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-8 flex justify-end">
-                  <button
-                    type="submit"
-                    className="rounded-md bg-indigo-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-                  >
-                    Send message
-                  </button>
-                </div>
+              <div className="mt-10 flex justify-end border-t border-gray-900/10 pt-8">
+                <button
+                  type="submit"
+                  className="rounded-md bg-deepteal px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-emerald-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                  Send message
+                </button>
               </div>
             </form>
           </div>
         </div>
-      )
+      </div>
+    </div>
+  )
 }

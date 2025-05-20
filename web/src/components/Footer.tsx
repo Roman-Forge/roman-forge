@@ -1,11 +1,11 @@
+import { Link } from '@tanstack/react-router';
+
 const navigation = {
     main: [
-      { name: 'About', href: '#' },
-      { name: 'Blog', href: '#' },
-      { name: 'Jobs', href: '#' },
-      { name: 'Press', href: '#' },
-      { name: 'Accessibility', href: '#' },
-      { name: 'Partners', href: '#' },
+      { name: 'About', href: '/about' },
+      { name: 'Blog', href: '/blog' },
+      { name: 'Contact', href: '/contact' },
+      { name: 'Process', href: '/process' },
     ],
     social: [
       {
@@ -73,14 +73,15 @@ const navigation = {
   }
   
   export default function Footer() {
+    const currentYear = new Date().getFullYear();
     return (
       <footer className="bg-deepblue relative overflow-hidden bg-[url('./roman-footer-circle.png')] bg-[length:100%] bg-no-repeat bg-[-32em 6%]">
         <div className="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
           <nav aria-label="Footer" className="-mb-6 flex flex-wrap justify-center gap-x-12 gap-y-3 text-sm/6">
             {navigation.main.map((item) => (
-              <a key={item.name} href={item.href} className="text-gray-400 hover:text-white">
+              <Link key={item.name} to={item.href} className="text-gray-400 hover:text-white">
                 {item.name}
-              </a>
+              </Link>
             ))}
           </nav>
           <div className="mt-16 flex justify-center gap-x-10">
@@ -91,7 +92,8 @@ const navigation = {
               </a>
             ))}
           </div>
-          <p className="mt-10 text-center text-sm/6 text-gray-400">&copy; 2024 Your Company, Inc. All rights reserved.</p>
+          <p className="mt-10 text-center text-sm/6 text-gray-400">&copy; {currentYear} Roman Forge, Inc. All rights reserved.</p>
+
         </div>
       </footer>
     )

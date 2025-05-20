@@ -1,42 +1,41 @@
-import Footer from "../components/Footer";
-
-const values = [
-
-
-    {
-      name: 'Be world-class',
-      description:
-        'Aut illo quae. Ut et harum ea animi natus. Culpa maiores et sed sint et magnam exercitationem quia. Ullam voluptas nihil vitae dicta molestiae et. Aliquid velit porro vero.',
-    },
-    {
-      name: 'Share everything you know',
-      description:
-        'Mollitia delectus a omnis. Quae velit aliquid. Qui nulla maxime adipisci illo id molestiae. Cumque cum ut minus rerum architecto magnam consequatur. Quia quaerat minima.',
-    },
-    {
-      name: 'Always learning',
-      description:
-        'Aut repellendus et officiis dolor possimus. Deserunt velit quasi sunt fuga error labore quia ipsum. Commodi autem voluptatem nam. Quos voluptatem totam.',
-    },
-    {
-      name: 'Be supportive',
-      description:
-        'Magnam provident veritatis odit. Vitae eligendi repellat non. Eum fugit impedit veritatis ducimus. Non qui aspernatur laudantium modi. Praesentium rerum error deserunt harum.',
-    },
-    {
-      name: 'Take responsibility',
-      description:
-        'Sit minus expedita quam in ullam molestiae dignissimos in harum. Tenetur dolorem iure. Non nesciunt dolorem veniam necessitatibus laboriosam voluptas perspiciatis error.',
-    },
-    {
-      name: 'Enjoy downtime',
-      description:
-        'Ipsa in earum deserunt aut. Quos minus aut animi et soluta. Ipsum dicta ut quia eius. Possimus reprehenderit iste aspernatur ut est velit consequatur distinctio.',
-    },
-  ]
+import { Link } from "@tanstack/react-router";
 
 
 export default function About() {
+
+  const values = [
+    {
+      name: "Innovation",
+      description: "We pioneer cutting-edge web technologies, leveraging tools like React, Node.js, and GraphQL to deliver forward-thinking solutions that keep your business ahead of the curve.",
+      icon: "CodeBracketIcon",
+    },
+    {
+      name: "Reliability",
+      description: "We ensure your website is always secure, up-to-date, and performing optimally with 24/7 maintenance, advanced security monitoring, and robust hosting services tailored to your needs.",
+      icon: "WrenchScrewdriverIcon",
+    },
+    {
+      name: "Scalability",
+      description: "Our solutions are built to grow with you, from startup websites to enterprise-grade applications, using scalable architectures and cloud deployment strategies for long-term success.",
+      icon: "CloudIcon",
+    },
+    {
+      name: "Performance",
+      description: "We optimize every aspect of your site, reducing load times and enhancing user experience with techniques like Incremental Static Regeneration and performance tuning for maximum efficiency.",
+      icon: "BoltIcon",
+    },
+    {
+      name: "Creativity",
+      description: "Our team brings fresh, creative perspectives to every project, designing custom branding, logos, and content that make your business stand out in a crowded digital landscape.",
+      icon: "LightBulbIcon",
+    },
+    {
+      name: "Collaboration",
+      description: "We work closely with you, offering mentorship and team leadership to align our solutions with your vision, ensuring a partnership that drives mutual success.",
+      icon: "UsersIcon",
+    },
+  ];
+
     return (
         <main className="isolate">
         {/* Hero section */}
@@ -82,13 +81,10 @@ export default function About() {
               <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
                 <div className="relative w-full lg:max-w-xl lg:shrink-0 xl:max-w-2xl">
                   <h1 className="text-pretty text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl">
-                    We’re changing the way people connect
+                    About Roman Forge
                   </h1>
                   <p className="mt-8 text-pretty text-lg font-medium text-gray-500 sm:max-w-md sm:text-xl/8 lg:max-w-none">
-                    Cupidatat minim id magna ipsum sint dolor qui. Sunt sit in quis cupidatat mollit aute velit. Et
-                    labore commodo nulla aliqua proident mollit ullamco exercitation tempor. Sint aliqua anim nulla sunt
-                    mollit id pariatur in voluptate cillum. Eu voluptate tempor esse minim amet fugiat veniam occaecat
-                    aliqua.
+                  At Roman Forge, we are your all-in-one web development partner, forging digital solutions that stand the test of time. Led by Jacob Roman, a seasoned Senior Digital Engineer, our mission is to empower businesses with stunning websites, robust e-commerce platforms, and seamless integrations—covering every aspect of your online presence.
                   </p>
                 </div>
                 <div className="mt-14 flex justify-end gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
@@ -96,8 +92,8 @@ export default function About() {
                     <div className="relative">
                       <img
                         alt=""
-                        src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80"
-                        className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
+                        src="/anvil.png"
+                        className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-contain shadow-lg"
                       />
                       <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
                     </div>
@@ -106,16 +102,16 @@ export default function About() {
                     <div className="relative">
                       <img
                         alt=""
-                        src="https://images.unsplash.com/photo-1485217988980-11786ced9454?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80"
-                        className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
+                        src="/building.webp"
+                        className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-contain shadow-lg"
                       />
                       <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
                     </div>
                     <div className="relative">
                       <img
                         alt=""
-                        src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-x=.4&w=396&h=528&q=80"
-                        className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
+                        src="/coffee.png"
+                        className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-contain shadow-lg"
                       />
                       <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
                     </div>
@@ -124,16 +120,16 @@ export default function About() {
                     <div className="relative">
                       <img
                         alt=""
-                        src="https://images.unsplash.com/photo-1670272504528-790c24957dda?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=left&w=400&h=528&q=80"
-                        className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
+                        src="/dev-computer.png"
+                        className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-contain shadow-lg"
                       />
                       <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
                     </div>
                     <div className="relative">
                       <img
                         alt=""
-                        src="https://images.unsplash.com/photo-1670272505284-8faba1c31f7d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80"
-                        className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
+                        src="/forge.png"
+                        className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-contain shadow-lg"
                       />
                       <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
                     </div>
@@ -145,49 +141,23 @@ export default function About() {
         </div>
 
         {/* Content section */}
-        <div className="mx-auto -mt-12 max-w-7xl px-6 sm:mt-0 lg:px-8 xl:-mt-8">
-          <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
-            <h2 className="text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">Our mission</h2>
-            <div className="mt-6 flex flex-col gap-x-8 gap-y-20 lg:flex-row">
-              <div className="lg:w-full lg:max-w-2xl lg:flex-auto">
-                <p className="text-xl/8 text-gray-600">
-                  Aliquet nec orci mattis amet quisque ullamcorper neque, nibh sem. At arcu, sit dui mi, nibh dui, diam
-                  eget aliquam. Quisque id at vitae feugiat egestas ac. Diam nulla orci at in viverra scelerisque eget.
-                  Eleifend egestas fringilla sapien.
-                </p>
-                <p className="mt-10 max-w-xl text-base/7 text-gray-700">
-                  Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris semper sed amet
-                  vitae sed turpis id. Id dolor praesent donec est. Odio penatibus risus viverra tellus varius sit neque
-                  erat velit. Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris
-                  semper sed amet vitae sed turpis id.
-                </p>
-              </div>
-              <div className="lg:flex lg:flex-auto lg:justify-center">
-                <dl className="w-64 space-y-8 xl:w-80">
-                 
-                </dl>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Image section */}
-        <div className="mt-32 sm:mt-40 xl:mx-auto xl:max-w-7xl xl:px-8">
-          <img
-            alt=""
-            src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80"
-            className="aspect-[5/2] w-full object-cover xl:rounded-3xl"
-          />
-        </div>
+            <section className="flex justify-center bg-sand">
+                <div className="flex flex-col justify-center container mx-60 py-20">
+                    <h2 className="font-bold flex items-center mb-4 text-deepteal">
+                        <svg className="mr-2" width="40" height="1" viewBox="0 0 40 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <line x1="40" y1="1" y2="1" stroke="black"/>
+                        </svg>
+                        OUR MISSION
+                    </h2>
+                    <p className="font-garamond text-xl mb-10">We believe every business deserves a digital edge. Whether you're a startup launching your first site or an established company enhancing your online store, Roman Forge delivers tailored, high-quality web solutions. With expertise in modern frameworks like React and Node.js, we tackle everything from design to deployment, ensuring your success in a competitive digital landscape.</p>
+                    <h4 className="font-garamond text-3xl text-orange-900 font-semibold">Partner with us to forge a digital future that lasts!</h4>
+                </div>
+            </section>
 
         {/* Values section */}
         <div className="mx-auto mt-32 mb-20 max-w-7xl px-6 sm:mt-40 lg:px-8">
           <div className="mx-auto max-w-2xl lg:mx-0">
-            <h2 className="text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">Our values</h2>
-            <p className="mt-6 text-lg/8 text-gray-600">
-              Lorem ipsum dolor sit amet consect adipisicing elit. Possimus magnam voluptatum cupiditate veritatis in
-              accusamus quisquam.
-            </p>
+            <h2 className="text-pretty text-4xl font-semibold tracking-tight text-deepteal sm:text-5xl">Our values</h2>
           </div>
           <dl className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 text-base/7 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3">
             {values.map((value) => (
@@ -198,6 +168,19 @@ export default function About() {
             ))}
           </dl>
         </div>
+
+        <section className="text-center py-10 bg-white">
+        <h2 className="font-bold text-3xl mb-4 text-deepteal">Ready to Forge Your Digital Future?</h2>
+        <p className="font-garamond text-lg mb-6">
+          Contact us today to discuss how Roman Forge can elevate your online presence with our comprehensive web services!
+        </p>
+        <Link
+          to="/contact"
+          className="bg-deepteal text-white px-6 py-3 rounded-lg hover:bg-teal-800 transition"
+        >
+          Get in Touch
+        </Link>
+      </section>
 
         </main>
     );
