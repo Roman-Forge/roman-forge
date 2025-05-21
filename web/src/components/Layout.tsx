@@ -26,7 +26,7 @@ export default function Layout() {
                             </Link>
                             <nav className="flex font-semibold justify-evenly w-1/3">
                                 <Link to="/about">ABOUT</Link>
-                                <Link to="/blog">BLOG</Link>
+                                <Link to="/process">PROCESS</Link>
                                 <Link to="/services">SERVICES</Link>
                                 <Link to="/contact">CONTACT</Link>
                             </nav>

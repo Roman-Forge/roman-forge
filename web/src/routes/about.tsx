@@ -169,18 +169,7 @@ export default function About() {
           </dl>
         </div>
 
-        <section className="text-center py-10 bg-white">
-        <h2 className="font-bold text-3xl mb-4 text-deepteal">Ready to Forge Your Digital Future?</h2>
-        <p className="font-garamond text-lg mb-6">
-          Contact us today to discuss how Roman Forge can elevate your online presence with our comprehensive web services!
-        </p>
-        <Link
-          to="/contact"
-          className="bg-deepteal text-white px-6 py-3 rounded-lg hover:bg-teal-800 transition"
-        >
-          Get in Touch
-        </Link>
-      </section>
+    
 
         </main>
     );

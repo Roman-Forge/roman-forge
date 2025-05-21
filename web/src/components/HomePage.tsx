@@ -74,85 +74,6 @@ export default function HomePage() {
         },
     ];
 
-    const blogPosts = [
-        {
-          id: 23432345,
-          title: "Mastering Modern Web Design for Business Growth",
-          description: "Unlock the secrets to captivating web designs that drive engagement and boost your brand’s success.",
-          author: { 
-            name: "Jacob Roman",
-            href: "/jacob-roman",
-            imageUrl: "/roman-portrait.jpg",
-            role: "CEO & Senior Digital Engineer",
-          },
-          category: {
-            href: "/web-design",
-            title: "Web Design",
-          },
-          date: "05/15/2025",
-          datetime: "2025-05-15",
-          href: '/blog/mastering-modern-web-design',
-          image: "/images/blog/modern-web-design.jpg"
-        },
-        {
-          id: 34323245,
-          title: "Why Your Business Needs a CMS Today",
-          description: "Learn how a CMS can streamline your website updates and enhance your online presence with ease.",
-          author: {
-            name: "Jacob Roman",
-            href: "/jacob-roman",
-            imageUrl: "/roman-portrait.jpg",
-            role: "CEO & Senior Digital Engineer"
-          },
-          category: {
-            href: '/cms',
-            title: "CMS"
-          },
-          date: "05/10/2025",
-          datetime: "2025-05-10",
-          href: "/blog/why-cms",
-          image: "/images/blog/cms-benefits.jpg"
-        },
-        {
-          id: 34235,
-          title: "E-Commerce Success: Top Strategies for 2025",
-          description: "Discover proven tactics to optimize your online store and maximize conversions this year.",
-          author: {
-            name: "Jacob Roman",
-            href: "/jacob-roman",
-            imageUrl: "/roman-portrait.jpg",
-            role: "CEO & Senior Digital Engineer"
-          },
-          category: {
-            href: '/ecommerce',
-            title: "E-Commerce"
-          },
-          date: '05/01/2025',
-          datetime: "2025-05-01",
-          href: "/blog/ecommerce-strategies",
-          image: "/images/blog/ecommerce-tips.jpg"
-        },
-        {
-          id: 98765432,
-          title: "Boost SEO with These Expert Tips",
-          description: "Elevate your site’s visibility with actionable SEO strategies tailored for today’s market.",
-          author: {
-            name: "Jacob Roman",
-            href: "/jacob-roman",
-            imageUrl: "/roman-portrait.jpg",
-            role: "CEO & Senior Digital Engineer"
-          },
-          category: {
-            href: '/seo',
-            title: "SEO"
-          },
-          date: "04/25/2025",
-          datetime: "2025-04-25",
-          href: "/blog/boost-seo",
-          image: "/images/blog/seo-tips.jpg"
-        },
-    ];
-
     return (
         <>
             <section className="flex container mx-auto py-8">
@@ -484,57 +405,7 @@ export default function HomePage() {
                     </div>
                 </div>
             </section>
-            <section className="container mx-auto mt-36 mb-16">
-                <h2 className="font-bold flex items-center mb-4">
-                    <svg className="mr-2" width="40" height="1" viewBox="0 0 40 1" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <line x1="40" y1="1" y2="1" stroke="black"/>
-                    </svg>
-                    LATEST INSIGHTS
-                </h2>
-                <h3
-                    className="font-garamond text-5xl mb-10"
-                >
-                    Stay Ahead with Our Blog
-                </h3>
-                <div className="grid grid-cols-4 gap-6">
-                {blogPosts.map((post) => (
-                    <article key={post.id} className="flex max-w-xl flex-col items-start justify-between">
-                      <div className="flex items-center gap-x-4 text-xs">
-                        <time dateTime={post.datetime} className="text-gray-500">
-                          {post.date}
-                        </time>
-                        <a
-                          href={post.category.href}
-                          className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
-                        >
-                          {post.category.title}
-                        </a>
-                      </div>
-                      <div className="group relative">
-                        <h3 className="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600">
-                          <a href={post.href}>
-                            <span className="absolute inset-0" />
-                            {post.title}
-                          </a>
-                        </h3>
-                        <p className="mt-5 line-clamp-3 text-sm/6 text-gray-600">{post.description}</p>
-                      </div>
-                      <div className="relative mt-8 flex items-center gap-x-4">
-                        <img alt="" src={post.author.imageUrl} className="size-10 rounded-full bg-gray-50" />
-                        <div className="text-sm/6">
-                          <p className="font-semibold text-gray-900">
-                            <a href={post.author.href}>
-                              <span className="absolute inset-0" />
-                              {post.author.name}
-                            </a>
-                          </p>
-                          <p className="text-gray-600">{post.author.role}</p>
-                        </div>
-                      </div>
-                    </article>
-                  ))} 
-                </div>
-            </section>
+           
         </>
     )
 }

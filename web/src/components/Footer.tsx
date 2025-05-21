@@ -3,7 +3,7 @@ import { Link } from '@tanstack/react-router';
 const navigation = {
     main: [
       { name: 'About', href: '/about' },
-      { name: 'Blog', href: '/blog' },
+      { name: 'Services', href: '/services' },
       { name: 'Contact', href: '/contact' },
       { name: 'Process', href: '/process' },
     ],
@@ -75,6 +75,19 @@ const navigation = {
   export default function Footer() {
     const currentYear = new Date().getFullYear();
     return (
+      <>
+    <section className="text-center py-10 bg-white">
+        <h2 className="font-bold text-3xl mb-4 text-deepteal">Ready to Forge Your Digital Future?</h2>
+        <p className="font-garamond text-lg mb-6">
+          Contact us today to discuss how Roman Forge can elevate your online presence with our comprehensive web services!
+        </p>
+        <Link
+          to="/contact"
+          className="bg-deepteal text-white px-6 py-3 rounded-lg hover:bg-teal-800 transition"
+        >
+          Get in Touch
+        </Link>
+      </section>
       <footer className="bg-deepblue relative overflow-hidden bg-[url('./roman-footer-circle.png')] bg-[length:100%] bg-no-repeat bg-[-32em 6%]">
         <div className="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
           <nav aria-label="Footer" className="-mb-6 flex flex-wrap justify-center gap-x-12 gap-y-3 text-sm/6">
@@ -96,6 +109,7 @@ const navigation = {
 
         </div>
       </footer>
+    </>
     )
   }
   

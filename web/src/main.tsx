@@ -16,6 +16,7 @@ import Services from './routes/services';
 import './index.css';
 import Contact from './routes/contact';
 import Blog from './routes/blog';
+import Process from './routes/process';
 
 // *POST HOG* //
 const apiHost = import.meta.env.VITE_REACT_APP_PUBLIC_POSTHOG_HOST;
@@ -59,12 +60,19 @@ const blogRoute = new Route({
   component: Blog
 })
 
+const processRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: '/process',
+  component: Process
+})
+
 const routeTree = rootRoute.addChildren([
   indexRoute, 
   aboutRoute, 
   servicesRoute,
   contactRoute,
   blogRoute,
+  processRoute,
 ]);
 const router = createRouter({ routeTree });
 
