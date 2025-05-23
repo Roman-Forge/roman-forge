@@ -5,6 +5,9 @@ import Footer from './Footer';
 
 export default function Layout() {
     const flagEnabled = useFeatureFlagEnabled('test-flag');
+    console.log("flagEnabled", flagEnabled);
+    console.log("window.location.origin", window.location.origin === 'https://forge-5v1.pages.dev');
+    console.log("import.meta.env.VITE_FEATURE_LAUNCH", import.meta.env.VITE_FEATURE_LAUNCH);
     if ((flagEnabled && window.location.origin === 'https://forge-5v1.pages.dev') || import.meta.env.VITE_FEATURE_LAUNCH === 'true' ) {
         return (
             <div className="font-lexend bg-[url('/web-background.png')] bg-cover relative overflow-x-hidden">

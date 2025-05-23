@@ -76,7 +76,7 @@ const navigation = {
     const currentYear = new Date().getFullYear();
     return (
       <>
-    <section className="text-center py-10 bg-white">
+    <section className="text-center py-10 bg-orange-100">
         <h2 className="font-bold text-3xl mb-4 text-deepteal">Ready to Forge Your Digital Future?</h2>
         <p className="font-garamond text-lg mb-6">
           Contact us today to discuss how Roman Forge can elevate your online presence with our comprehensive web services!

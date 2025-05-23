@@ -128,371 +128,377 @@ const contentCreationFeatures = [
 
 export default function Services() {
     return (
-<>
-    <section>
-        <div className="overflow-hidden bg-white py-24 sm:py-32">
-            <div className="mx-auto max-w-7xl md:px-6 lg:px-8">
-                <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">
-                <div className="px-6 lg:px-0 lg:pr-4 lg:pt-4">
-                    <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
-                    <h2 className="text-base/7 font-semibold text-indigo-600">Creative Web Solutions</h2>
-                    <p className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-                        Website Design and Development
-                    </p>
-                    <p className="mt-6 text-lg/8 text-gray-600">
-                        We craft custom, responsive websites for small businesses, startups, and individuals using HTML, CSS, JavaScript, and frameworks like React, tailored to your unique vision.
-                    </p>
-                    <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-gray-600 lg:max-w-none">
-                        {websiteDesignFeatures.map((feature) => (
-                        <div key={feature.name} className="relative pl-9">
-                            <dt className="inline font-semibold text-gray-900">
-                            <feature.icon aria-hidden="true" className="absolute left-1 top-1 size-5 text-indigo-600" />
-                            {feature.name}
-                            </dt>{' '}
-                            <dd className="inline">{feature.description}</dd>
+        <>
+            <section className="bg-deepteal">
+                <div className="container mx-auto py-10">
+                    <h1 className="font-lexend text-5xl text-white font-semibold">Services</h1>
+                </div>
+            </section>
+            <section className="container mx-auto bg-white">
+                <div className="bg-[url('https://images.unsplash.com/photo-1523652477945-07d1377e0e50?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover h-44"></div>
+                <div className="overflow-hidden bg-white py-24 sm:py-32">
+                    <div className="mx-auto max-w-7xl md:px-6 lg:px-8">
+                        <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">
+                        <div className="px-6 lg:px-0 lg:pr-4 lg:pt-4">
+                            <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
+                            <h2 className="text-base/7 font-semibold text-indigo-600">Creative Web Solutions</h2>
+                            <p className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+                                Website Design and Development
+                            </p>
+                            <p className="mt-6 text-lg/8 text-gray-600">
+                                We craft custom, responsive websites for small businesses, startups, and individuals using HTML, CSS, JavaScript, and frameworks like React, tailored to your unique vision.
+                            </p>
+                            <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-gray-600 lg:max-w-none">
+                                {websiteDesignFeatures.map((feature) => (
+                                <div key={feature.name} className="relative pl-9">
+                                    <dt className="inline font-semibold text-gray-900">
+                                    <feature.icon aria-hidden="true" className="absolute left-1 top-1 size-5 text-indigo-600" />
+                                    {feature.name}
+                                    </dt>{' '}
+                                    <dd className="inline">{feature.description}</dd>
+                                </div>
+                                ))}
+                            </dl>
+                            </div>
                         </div>
-                        ))}
-                    </dl>
+                        <div className="sm:px-6 lg:px-0">
+                            <div className="relative isolate overflow-hidden bg-indigo-500 px-6 pt-8 sm:mx-auto sm:max-w-2xl sm:rounded-3xl sm:pl-16 sm:pr-0 sm:pt-16 lg:mx-0 lg:max-w-none">
+                            <div
+                                aria-hidden="true"
+                                className="absolute -inset-y-px -left-3 -z-10 w/full origin-bottom-left skew-x-[-30deg] bg-indigo-100 opacity-20 ring-1 ring-inset ring-white"
+                            />
+                            <div className="mx-auto max-w-2xl sm:mx-0 sm:max-w-none">
+                                <img
+                                alt="Website design screenshot"
+                                src="https://tailwindcss.com/plus-assets/img/component-images/project-app-screenshot.png"
+                                width={2432}
+                                height={1442}
+                                className="-mb-12 w-[57rem] max-w-none rounded-tl-xl bg-gray-800 ring-1 ring-white/10"
+                                />
+                            </div>
+                            <div
+                                aria-hidden="true"
+                                className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-black/10 sm:rounded-3xl"
+                            />
+                            </div>
+                        </div>
+                        </div>
                     </div>
+                    </div>
+                </section>
+
+        <section>
+        <div className="overflow-hidden bg-white py-24 sm:py-32">
+        <div className="mx-auto max-w-7xl md:px-6 lg:px-8">
+            <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">
+            <div className="px-6 lg:px-0 lg:pr-4 lg:pt-4">
+                <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
+                <h2 className="text-base/7 font-semibold text-indigo-600">Online Selling Made Simple</h2>
+                <p className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+                    E-commerce Solutions
+                </p>
+                <p className="mt-6 text-lg/8 text-gray-600">
+                    Build a thriving online store with product listings, secure payment gateways, custom admin panels, and SEO, designed to meet the needs of your business.
+                </p>
+                <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-gray-600 lg:max-w-none">
+                    {ecommerceFeatures.map((feature) => (
+                    <div key={feature.name} className="relative pl-9">
+                        <dt className="inline font-semibold text-gray-900">
+                        <feature.icon aria-hidden="true" className="absolute left-1 top-1 size-5 text-indigo-600" />
+                        {feature.name}
+                        </dt>{' '}
+                        <dd className="inline">{feature.description}</dd>
+                    </div>
+                    ))}
+                </dl>
                 </div>
-                <div className="sm:px-6 lg:px-0">
-                    <div className="relative isolate overflow-hidden bg-indigo-500 px-6 pt-8 sm:mx-auto sm:max-w-2xl sm:rounded-3xl sm:pl-16 sm:pr-0 sm:pt-16 lg:mx-0 lg:max-w-none">
-                    <div
-                        aria-hidden="true"
-                        className="absolute -inset-y-px -left-3 -z-10 w/full origin-bottom-left skew-x-[-30deg] bg-indigo-100 opacity-20 ring-1 ring-inset ring-white"
+            </div>
+            <div className="sm:px-6 lg:px-0">
+                <div className="relative isolate overflow-hidden bg-indigo-500 px-6 pt-8 sm:mx-auto sm:max-w-2xl sm:rounded-3xl sm:pl-16 sm:pr-0 sm:pt-16 lg:mx-0 lg:max-w-none">
+                <div
+                    aria-hidden="true"
+                    className="absolute -inset-y-px -left-3 -z-10 w/full origin-bottom-left skew-x-[-30deg] bg-indigo-100 opacity-20 ring-1 ring-inset ring-white"
+                />
+                <div className="mx-auto max-w-2xl sm:mx-0 sm:max-w-none">
+                    <img
+                    alt="E-commerce platform screenshot"
+                    src="https://tailwindcss.com/plus-assets/img/component-images/project-app-screenshot.png"
+                    width={2432}
+                    height={1442}
+                    className="-mb-12 w-[57rem] max-w-none rounded-tl-xl bg-gray-800 ring-1 ring-white/10"
                     />
-                    <div className="mx-auto max-w-2xl sm:mx-0 sm:max-w-none">
-                        <img
-                        alt="Website design screenshot"
-                        src="https://tailwindcss.com/plus-assets/img/component-images/project-app-screenshot.png"
-                        width={2432}
-                        height={1442}
-                        className="-mb-12 w-[57rem] max-w-none rounded-tl-xl bg-gray-800 ring-1 ring-white/10"
-                        />
-                    </div>
-                    <div
-                        aria-hidden="true"
-                        className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-black/10 sm:rounded-3xl"
-                    />
-                    </div>
                 </div>
+                <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-black/10 sm:rounded-3xl"
+                />
                 </div>
             </div>
             </div>
+        </div>
+        </div>
         </section>
 
-<section>
-<div className="overflow-hidden bg-white py-24 sm:py-32">
-<div className="mx-auto max-w-7xl md:px-6 lg:px-8">
-    <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">
-    <div className="px-6 lg:px-0 lg:pr-4 lg:pt-4">
-        <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
-        <h2 className="text-base/7 font-semibold text-indigo-600">Online Selling Made Simple</h2>
-        <p className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-            E-commerce Solutions
-        </p>
-        <p className="mt-6 text-lg/8 text-gray-600">
-            Build a thriving online store with product listings, secure payment gateways, custom admin panels, and SEO, designed to meet the needs of your business.
-        </p>
-        <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-gray-600 lg:max-w-none">
-            {ecommerceFeatures.map((feature) => (
-            <div key={feature.name} className="relative pl-9">
-                <dt className="inline font-semibold text-gray-900">
-                <feature.icon aria-hidden="true" className="absolute left-1 top-1 size-5 text-indigo-600" />
-                {feature.name}
-                </dt>{' '}
-                <dd className="inline">{feature.description}</dd>
+        <section>
+        <div className="overflow-hidden bg-white py-24 sm:py-32">
+        <div className="mx-auto max-w-7xl md:px-6 lg:px-8">
+            <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">
+            <div className="px-6 lg:px-0 lg:pr-4 lg:pt-4">
+                <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
+                <h2 className="text-base/7 font-semibold text-indigo-600">Tailored Applications</h2>
+                <p className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+                    Web Application Development
+                </p>
+                <p className="mt-6 text-lg/8 text-gray-600">
+                    Develop complex, custom web applications with Node.js, Python, and databases like MySQL or MongoDB, designed to meet your unique business requirements.
+                </p>
+                <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-gray-600 lg:max-w-none">
+                    {webAppFeatures.map((feature) => (
+                    <div key={feature.name} className="relative pl-9">
+                        <dt className="inline font-semibold text-gray-900">
+                        <feature.icon aria-hidden="true" className="absolute left-1 top-1 size-5 text-indigo-600" />
+                        {feature.name}
+                        </dt>{' '}
+                        <dd className="inline">{feature.description}</dd>
+                    </div>
+                    ))}
+                </dl>
+                </div>
             </div>
-            ))}
-        </dl>
-        </div>
-    </div>
-    <div className="sm:px-6 lg:px-0">
-        <div className="relative isolate overflow-hidden bg-indigo-500 px-6 pt-8 sm:mx-auto sm:max-w-2xl sm:rounded-3xl sm:pl-16 sm:pr-0 sm:pt-16 lg:mx-0 lg:max-w-none">
-        <div
-            aria-hidden="true"
-            className="absolute -inset-y-px -left-3 -z-10 w/full origin-bottom-left skew-x-[-30deg] bg-indigo-100 opacity-20 ring-1 ring-inset ring-white"
-        />
-        <div className="mx-auto max-w-2xl sm:mx-0 sm:max-w-none">
-            <img
-            alt="E-commerce platform screenshot"
-            src="https://tailwindcss.com/plus-assets/img/component-images/project-app-screenshot.png"
-            width={2432}
-            height={1442}
-            className="-mb-12 w-[57rem] max-w-none rounded-tl-xl bg-gray-800 ring-1 ring-white/10"
-            />
-        </div>
-        <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-black/10 sm:rounded-3xl"
-        />
-        </div>
-    </div>
-    </div>
-</div>
-</div>
-</section>
-
-<section>
-<div className="overflow-hidden bg-white py-24 sm:py-32">
-<div className="mx-auto max-w-7xl md:px-6 lg:px-8">
-    <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">
-    <div className="px-6 lg:px-0 lg:pr-4 lg:pt-4">
-        <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
-        <h2 className="text-base/7 font-semibold text-indigo-600">Tailored Applications</h2>
-        <p className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-            Web Application Development
-        </p>
-        <p className="mt-6 text-lg/8 text-gray-600">
-            Develop complex, custom web applications with Node.js, Python, and databases like MySQL or MongoDB, designed to meet your unique business requirements.
-        </p>
-        <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-gray-600 lg:max-w-none">
-            {webAppFeatures.map((feature) => (
-            <div key={feature.name} className="relative pl-9">
-                <dt className="inline font-semibold text-gray-900">
-                <feature.icon aria-hidden="true" className="absolute left-1 top-1 size-5 text-indigo-600" />
-                {feature.name}
-                </dt>{' '}
-                <dd className="inline">{feature.description}</dd>
+            <div className="sm:px-6 lg:px-0">
+                <div className="relative isolate overflow-hidden bg-indigo-500 px-6 pt-8 sm:mx-auto sm:max-w-2xl sm:rounded-3xl sm:pl-16 sm:pr-0 sm:pt-16 lg:mx-0 lg:max-w-none">
+                <div
+                    aria-hidden="true"
+                    className="absolute -inset-y-px -left-3 -z-10 w/full origin-bottom-left skew-x-[-30deg] bg-indigo-100 opacity-20 ring-1 ring-inset ring-white"
+                />
+                <div className="mx-auto max-w-2xl sm:mx-0 sm:max-w-none">
+                    <img
+                    alt="Web application screenshot"
+                    src="https://tailwindcss.com/plus-assets/img/component-images/project-app-screenshot.png"
+                    width={2432}
+                    height={1442}
+                    className="-mb-12 w-[57rem] max-w-none rounded-tl-xl bg-gray-800 ring-1 ring-white/10"
+                    />
+                </div>
+                <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-black/10 sm:rounded-3xl"
+                />
+                </div>
             </div>
-            ))}
-        </dl>
-        </div>
-    </div>
-    <div className="sm:px-6 lg:px-0">
-        <div className="relative isolate overflow-hidden bg-indigo-500 px-6 pt-8 sm:mx-auto sm:max-w-2xl sm:rounded-3xl sm:pl-16 sm:pr-0 sm:pt-16 lg:mx-0 lg:max-w-none">
-        <div
-            aria-hidden="true"
-            className="absolute -inset-y-px -left-3 -z-10 w/full origin-bottom-left skew-x-[-30deg] bg-indigo-100 opacity-20 ring-1 ring-inset ring-white"
-        />
-        <div className="mx-auto max-w-2xl sm:mx-0 sm:max-w-none">
-            <img
-            alt="Web application screenshot"
-            src="https://tailwindcss.com/plus-assets/img/component-images/project-app-screenshot.png"
-            width={2432}
-            height={1442}
-            className="-mb-12 w-[57rem] max-w-none rounded-tl-xl bg-gray-800 ring-1 ring-white/10"
-            />
-        </div>
-        <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-black/10 sm:rounded-3xl"
-        />
-        </div>
-    </div>
-    </div>
-</div>
-</div>
-</section>
-
-<section>
-<div className="overflow-hidden bg-white py-24 sm:py-32">
-<div className="mx-auto max-w-7xl md:px-6 lg:px-8">
-    <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">
-    <div className="px-6 lg:px-0 lg:pr-4 lg:pt-4">
-        <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
-        <h2 className="text-base/7 font-semibold text-indigo-600">Ongoing Care</h2>
-        <p className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-            Website Maintenance and Support
-        </p>
-        <p className="mt-6 text-lg/8 text-gray-600">
-            Keep your site running smoothly with our tiered maintenance plans, offering backups, updates, and priority support from $100/month.
-        </p>
-        <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-gray-600 lg:max-w-none">
-            {maintenanceFeatures.map((feature) => (
-            <div key={feature.name} className="relative pl-9">
-                <dt className="inline font-semibold text-gray-900">
-                <feature.icon aria-hidden="true" className="absolute left-1 top-1 size-5 text-indigo-600" />
-                {feature.name}
-                </dt>{' '}
-                <dd className="inline">{feature.description}</dd>
             </div>
-            ))}
-        </dl>
         </div>
-    </div>
-    <div className="sm:px-6 lg:px-0">
-        <div className="relative isolate overflow-hidden bg-indigo-500 px-6 pt-8 sm:mx-auto sm:max-w-2xl sm:rounded-3xl sm:pl-16 sm:pr-0 sm:pt-16 lg:mx-0 lg:max-w-none">
-        <div
-            aria-hidden="true"
-            className="absolute -inset-y-px -left-3 -z-10 w/full origin-bottom-left skew-x-[-30deg] bg-indigo-100 opacity-20 ring-1 ring-inset ring-white"
-        />
-        <div className="mx-auto max-w-2xl sm:mx-0 sm:max-w-none">
-            <img
-            alt="Maintenance dashboard screenshot"
-            src="https://tailwindcss.com/plus-assets/img/component-images/project-app-screenshot.png"
-            width={2432}
-            height={1442}
-            className="-mb-12 w-[57rem] max-w-none rounded-tl-xl bg-gray-800 ring-1 ring-white/10"
-            />
         </div>
-        <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-black/10 sm:rounded-3xl"
-        />
-        </div>
-    </div>
-    </div>
-</div>
-</div>
-</section>
+        </section>
 
-<section>
-<div className="overflow-hidden bg-white py-24 sm:py-32">
-<div className="mx-auto max-w-7xl md:px-6 lg:px-8">
-    <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">
-    <div className="px-6 lg:px-0 lg:pr-4 lg:pt-4">
-        <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
-        <h2 className="text-base/7 font-semibold text-indigo-600">Rank Higher</h2>
-        <p className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-            Search Engine Optimization (SEO)
-        </p>
-        <p className="mt-6 text-lg/8 text-gray-600">
-            Boost your online visibility with expert SEO services, optimizing your site for search engines and improving performance for better rankings.
-        </p>
-        <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-gray-600 lg:max-w-none">
-            {seoFeatures.map((feature) => (
-            <div key={feature.name} className="relative pl-9">
-                <dt className="inline font-semibold text-gray-900">
-                <feature.icon aria-hidden="true" className="absolute left-1 top-1 size-5 text-indigo-600" />
-                {feature.name}
-                </dt>{' '}
-                <dd className="inline">{feature.description}</dd>
+        <section>
+        <div className="overflow-hidden bg-white py-24 sm:py-32">
+        <div className="mx-auto max-w-7xl md:px-6 lg:px-8">
+            <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">
+            <div className="px-6 lg:px-0 lg:pr-4 lg:pt-4">
+                <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
+                <h2 className="text-base/7 font-semibold text-indigo-600">Ongoing Care</h2>
+                <p className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+                    Website Maintenance and Support
+                </p>
+                <p className="mt-6 text-lg/8 text-gray-600">
+                    Keep your site running smoothly with our tiered maintenance plans, offering backups, updates, and priority support from $100/month.
+                </p>
+                <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-gray-600 lg:max-w-none">
+                    {maintenanceFeatures.map((feature) => (
+                    <div key={feature.name} className="relative pl-9">
+                        <dt className="inline font-semibold text-gray-900">
+                        <feature.icon aria-hidden="true" className="absolute left-1 top-1 size-5 text-indigo-600" />
+                        {feature.name}
+                        </dt>{' '}
+                        <dd className="inline">{feature.description}</dd>
+                    </div>
+                    ))}
+                </dl>
+                </div>
             </div>
-            ))}
-        </dl>
-        </div>
-    </div>
-    <div className="sm:px-6 lg:px-0">
-        <div className="relative isolate overflow-hidden bg-indigo-500 px-6 pt-8 sm:mx-auto sm:max-w-2xl sm:rounded-3xl sm:pl-16 sm:pr-0 sm:pt-16 lg:mx-0 lg:max-w-none">
-        <div
-            aria-hidden="true"
-            className="absolute -inset-y-px -left-3 -z-10 w/full origin-bottom-left skew-x-[-30deg] bg-indigo-100 opacity-20 ring-1 ring-inset ring-white"
-        />
-        <div className="mx-auto max-w-2xl sm:mx-0 sm:max-w-none">
-            <img
-            alt="SEO analytics screenshot"
-            src="https://tailwindcss.com/plus-assets/img/component-images/project-app-screenshot.png"
-            width={2432}
-            height={1442}
-            className="-mb-12 w-[57rem] max-w-none rounded-tl-xl bg-gray-800 ring-1 ring-white/10"
-            />
-        </div>
-        <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-black/10 sm:rounded-3xl"
-        />
-        </div>
-    </div>
-    </div>
-</div>
-</div>
-</section>
-
-<section>
-<div className="overflow-hidden bg-white py-24 sm:py-32">
-<div className="mx-auto max-w-7xl md:px-6 lg:px-8">
-    <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">
-    <div className="px-6 lg:px-0 lg:pr-4 lg:pt-4">
-        <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
-        <h2 className="text-base/7 font-semibold text-indigo-600">Seamless Connections</h2>
-        <p className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-            Website Integrations
-        </p>
-        <p className="mt-6 text-lg/8 text-gray-600">
-            Enhance your website with seamless integrations using APIs and tools, connecting your site to third-party services for a unified experience.
-        </p>
-        <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-gray-600 lg:max-w-none">
-            {integrationsFeatures.map((feature) => (
-            <div key={feature.name} className="relative pl-9">
-                <dt className="inline font-semibold text-gray-900">
-                <feature.icon aria-hidden="true" className="absolute left-1 top-1 size-5 text-indigo-600" />
-                {feature.name}
-                </dt>{' '}
-                <dd className="inline">{feature.description}</dd>
+            <div className="sm:px-6 lg:px-0">
+                <div className="relative isolate overflow-hidden bg-indigo-500 px-6 pt-8 sm:mx-auto sm:max-w-2xl sm:rounded-3xl sm:pl-16 sm:pr-0 sm:pt-16 lg:mx-0 lg:max-w-none">
+                <div
+                    aria-hidden="true"
+                    className="absolute -inset-y-px -left-3 -z-10 w/full origin-bottom-left skew-x-[-30deg] bg-indigo-100 opacity-20 ring-1 ring-inset ring-white"
+                />
+                <div className="mx-auto max-w-2xl sm:mx-0 sm:max-w-none">
+                    <img
+                    alt="Maintenance dashboard screenshot"
+                    src="https://tailwindcss.com/plus-assets/img/component-images/project-app-screenshot.png"
+                    width={2432}
+                    height={1442}
+                    className="-mb-12 w-[57rem] max-w-none rounded-tl-xl bg-gray-800 ring-1 ring-white/10"
+                    />
+                </div>
+                <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-black/10 sm:rounded-3xl"
+                />
+                </div>
             </div>
-            ))}
-        </dl>
-        </div>
-    </div>
-    <div className="sm:px-6 lg:px-0">
-        <div className="relative isolate overflow-hidden bg-indigo-500 px-6 pt-8 sm:mx-auto sm:max-w-2xl sm:rounded-3xl sm:pl-16 sm:pr-0 sm:pt-16 lg:mx-0 lg:max-w-none">
-        <div
-            aria-hidden="true"
-            className="absolute -inset-y-px -left-3 -z-10 w/full origin-bottom-left skew-x-[-30deg] bg-indigo-100 opacity-20 ring-1 ring-inset ring-white"
-        />
-        <div className="mx-auto max-w-2xl sm:mx-0 sm:max-w-none">
-            <img
-            alt="Integration dashboard screenshot"
-            src="https://tailwindcss.com/plus-assets/img/component-images/project-app-screenshot.png"
-            width={2432}
-            height={1442}
-            className="-mb-12 w-[57rem] max-w-none rounded-tl-xl bg-gray-800 ring-1 ring-white/10"
-            />
-        </div>
-        <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-black/10 sm:rounded-3xl"
-        />
-        </div>
-    </div>
-    </div>
-</div>
-</div>
-</section>
-
-<section>
-<div className="overflow-hidden bg-white py-24 sm:py-32">
-<div className="mx-auto max-w-7xl md:px-6 lg:px-8">
-    <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">
-    <div className="px-6 lg:px-0 lg:pr-4 lg:pt-4">
-        <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
-        <h2 className="text-base/7 font-semibold text-indigo-600">Creative Assets</h2>
-        <p className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-            Content Creation
-        </p>
-        <p className="mt-6 text-lg/8 text-gray-600">
-            Elevate your brand with professional content creation, including logos, blog posts, and social media graphics designed to engage your audience.
-        </p>
-        <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-gray-600 lg:max-w-none">
-            {contentCreationFeatures.map((feature) => (
-            <div key={feature.name} className="relative pl-9">
-                <dt className="inline font-semibold text-gray-900">
-                <feature.icon aria-hidden="true" className="absolute left-1 top-1 size-5 text-indigo-600" />
-                {feature.name}
-                </dt>{' '}
-                <dd className="inline">{feature.description}</dd>
             </div>
-            ))}
-        </dl>
         </div>
-    </div>
-    <div className="sm:px-6 lg:px-0">
-        <div className="relative isolate overflow-hidden bg-indigo-500 px-6 pt-8 sm:mx-auto sm:max-w-2xl sm:rounded-3xl sm:pl-16 sm:pr-0 sm:pt-16 lg:mx-0 lg:max-w-none">
-        <div
-            aria-hidden="true"
-            className="absolute -inset-y-px -left-3 -z-10 w/full origin-bottom-left skew-x-[-30deg] bg-indigo-100 opacity-20 ring-1 ring-inset ring-white"
-        />
-        <div className="mx-auto max-w-2xl sm:mx-0 sm:max-w-none">
-            <img
-            alt="Content creation portfolio screenshot"
-            src="https://tailwindcss.com/plus-assets/img/component-images/project-app-screenshot.png"
-            width={2432}
-            height={1442}
-            className="-mb-12 w-[57rem] max-w-none rounded-tl-xl bg-gray-800 ring-1 ring-white/10"
-            />
         </div>
-        <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-black/10 sm:rounded-3xl"
-        />
-        </div>
-    </div>
-    </div>
-</div>
-</div>
-</section>
+        </section>
 
-</>
+        <section>
+        <div className="overflow-hidden bg-white py-24 sm:py-32">
+        <div className="mx-auto max-w-7xl md:px-6 lg:px-8">
+            <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">
+            <div className="px-6 lg:px-0 lg:pr-4 lg:pt-4">
+                <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
+                <h2 className="text-base/7 font-semibold text-indigo-600">Rank Higher</h2>
+                <p className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+                    Search Engine Optimization (SEO)
+                </p>
+                <p className="mt-6 text-lg/8 text-gray-600">
+                    Boost your online visibility with expert SEO services, optimizing your site for search engines and improving performance for better rankings.
+                </p>
+                <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-gray-600 lg:max-w-none">
+                    {seoFeatures.map((feature) => (
+                    <div key={feature.name} className="relative pl-9">
+                        <dt className="inline font-semibold text-gray-900">
+                        <feature.icon aria-hidden="true" className="absolute left-1 top-1 size-5 text-indigo-600" />
+                        {feature.name}
+                        </dt>{' '}
+                        <dd className="inline">{feature.description}</dd>
+                    </div>
+                    ))}
+                </dl>
+                </div>
+            </div>
+            <div className="sm:px-6 lg:px-0">
+                <div className="relative isolate overflow-hidden bg-indigo-500 px-6 pt-8 sm:mx-auto sm:max-w-2xl sm:rounded-3xl sm:pl-16 sm:pr-0 sm:pt-16 lg:mx-0 lg:max-w-none">
+                <div
+                    aria-hidden="true"
+                    className="absolute -inset-y-px -left-3 -z-10 w/full origin-bottom-left skew-x-[-30deg] bg-indigo-100 opacity-20 ring-1 ring-inset ring-white"
+                />
+                <div className="mx-auto max-w-2xl sm:mx-0 sm:max-w-none">
+                    <img
+                    alt="SEO analytics screenshot"
+                    src="https://tailwindcss.com/plus-assets/img/component-images/project-app-screenshot.png"
+                    width={2432}
+                    height={1442}
+                    className="-mb-12 w-[57rem] max-w-none rounded-tl-xl bg-gray-800 ring-1 ring-white/10"
+                    />
+                </div>
+                <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-black/10 sm:rounded-3xl"
+                />
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+        </section>
+
+        <section>
+        <div className="overflow-hidden bg-white py-24 sm:py-32">
+        <div className="mx-auto max-w-7xl md:px-6 lg:px-8">
+            <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">
+            <div className="px-6 lg:px-0 lg:pr-4 lg:pt-4">
+                <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
+                <h2 className="text-base/7 font-semibold text-indigo-600">Seamless Connections</h2>
+                <p className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+                    Website Integrations
+                </p>
+                <p className="mt-6 text-lg/8 text-gray-600">
+                    Enhance your website with seamless integrations using APIs and tools, connecting your site to third-party services for a unified experience.
+                </p>
+                <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-gray-600 lg:max-w-none">
+                    {integrationsFeatures.map((feature) => (
+                    <div key={feature.name} className="relative pl-9">
+                        <dt className="inline font-semibold text-gray-900">
+                        <feature.icon aria-hidden="true" className="absolute left-1 top-1 size-5 text-indigo-600" />
+                        {feature.name}
+                        </dt>{' '}
+                        <dd className="inline">{feature.description}</dd>
+                    </div>
+                    ))}
+                </dl>
+                </div>
+            </div>
+            <div className="sm:px-6 lg:px-0">
+                <div className="relative isolate overflow-hidden bg-indigo-500 px-6 pt-8 sm:mx-auto sm:max-w-2xl sm:rounded-3xl sm:pl-16 sm:pr-0 sm:pt-16 lg:mx-0 lg:max-w-none">
+                <div
+                    aria-hidden="true"
+                    className="absolute -inset-y-px -left-3 -z-10 w/full origin-bottom-left skew-x-[-30deg] bg-indigo-100 opacity-20 ring-1 ring-inset ring-white"
+                />
+                <div className="mx-auto max-w-2xl sm:mx-0 sm:max-w-none">
+                    <img
+                    alt="Integration dashboard screenshot"
+                    src="https://tailwindcss.com/plus-assets/img/component-images/project-app-screenshot.png"
+                    width={2432}
+                    height={1442}
+                    className="-mb-12 w-[57rem] max-w-none rounded-tl-xl bg-gray-800 ring-1 ring-white/10"
+                    />
+                </div>
+                <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-black/10 sm:rounded-3xl"
+                />
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+        </section>
+
+        <section>
+        <div className="overflow-hidden bg-white py-24 sm:py-32">
+        <div className="mx-auto max-w-7xl md:px-6 lg:px-8">
+            <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">
+            <div className="px-6 lg:px-0 lg:pr-4 lg:pt-4">
+                <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
+                <h2 className="text-base/7 font-semibold text-indigo-600">Creative Assets</h2>
+                <p className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+                    Content Creation
+                </p>
+                <p className="mt-6 text-lg/8 text-gray-600">
+                    Elevate your brand with professional content creation, including logos, blog posts, and social media graphics designed to engage your audience.
+                </p>
+                <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-gray-600 lg:max-w-none">
+                    {contentCreationFeatures.map((feature) => (
+                    <div key={feature.name} className="relative pl-9">
+                        <dt className="inline font-semibold text-gray-900">
+                        <feature.icon aria-hidden="true" className="absolute left-1 top-1 size-5 text-indigo-600" />
+                        {feature.name}
+                        </dt>{' '}
+                        <dd className="inline">{feature.description}</dd>
+                    </div>
+                    ))}
+                </dl>
+                </div>
+            </div>
+            <div className="sm:px-6 lg:px-0">
+                <div className="relative isolate overflow-hidden bg-indigo-500 px-6 pt-8 sm:mx-auto sm:max-w-2xl sm:rounded-3xl sm:pl-16 sm:pr-0 sm:pt-16 lg:mx-0 lg:max-w-none">
+                <div
+                    aria-hidden="true"
+                    className="absolute -inset-y-px -left-3 -z-10 w/full origin-bottom-left skew-x-[-30deg] bg-indigo-100 opacity-20 ring-1 ring-inset ring-white"
+                />
+                <div className="mx-auto max-w-2xl sm:mx-0 sm:max-w-none">
+                    <img
+                    alt="Content creation portfolio screenshot"
+                    src="https://tailwindcss.com/plus-assets/img/component-images/project-app-screenshot.png"
+                    width={2432}
+                    height={1442}
+                    className="-mb-12 w-[57rem] max-w-none rounded-tl-xl bg-gray-800 ring-1 ring-white/10"
+                    />
+                </div>
+                <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-black/10 sm:rounded-3xl"
+                />
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+        </section>
+
+        </>
       )
 }
