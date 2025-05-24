@@ -212,7 +212,7 @@ export default function Services() {
                     <div className="mx-auto max-w-2xl sm:mx-0 sm:max-w-none">
                       <img
                         alt="Website design screenshot"
-                        src="https://tailwindcss.com/plus-assets/img/component-images/project-app-screenshot.png"
+                        src="https://images.unsplash.com/photo-1579403124614-197f69d8187b?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         width={2432}
                         height={1442}
                         className="-mb-12 w-[57rem] max-w-none rounded-tl-xl bg-gray-800 ring-1 ring-white/10"
@@ -233,7 +233,7 @@ export default function Services() {
           <div className="overflow-hidden py-24 sm:py-32">
             <div className="mx-auto max-w-7xl md:px-6 lg:px-8">
               <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">
-                <div className="px-6 lg:px-0 lg:pr-4 lg:pt-4">
+                <div className="px-6 lg:px-0 lg:pr-4 lg:pt-4 order-2">
                   <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
                     <h2 className="text-base/7 font-semibold text-indigo-600">
                       Online Selling Made Simple
@@ -271,7 +271,7 @@ export default function Services() {
                     <div className="mx-auto max-w-2xl sm:mx-0 sm:max-w-none">
                       <img
                         alt="E-commerce platform screenshot"
-                        src="https://tailwindcss.com/plus-assets/img/component-images/project-app-screenshot.png"
+                        src="https://images.unsplash.com/photo-1742837581522-111d23b69a04?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         width={2432}
                         height={1442}
                         className="-mb-12 w-[57rem] max-w-none rounded-tl-xl bg-gray-800 ring-1 ring-white/10"
@@ -351,7 +351,7 @@ export default function Services() {
           <div className="overflow-hidden py-24 sm:py-32">
             <div className="mx-auto max-w-7xl md:px-6 lg:px-8">
               <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">
-                <div className="px-6 lg:px-0 lg:pr-4 lg:pt-4">
+                <div className="px-6 lg:px-0 lg:pr-4 lg:pt-4 order-2">
                   <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
                     <h2 className="text-base/7 font-semibold text-indigo-600">
                       Ongoing Care
@@ -389,7 +389,7 @@ export default function Services() {
                     <div className="mx-auto max-w-2xl sm:mx-0 sm:max-w-none">
                       <img
                         alt="Maintenance dashboard screenshot"
-                        src="https://tailwindcss.com/plus-assets/img/component-images/project-app-screenshot.png"
+                        src="https://images.unsplash.com/photo-1699413209298-4e2abf5bd991?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         width={2432}
                         height={1442}
                         className="-mb-12 w-[57rem] max-w-none rounded-tl-xl bg-gray-800 ring-1 ring-white/10"
@@ -448,7 +448,7 @@ export default function Services() {
                     <div className="mx-auto max-w-2xl sm:mx-0 sm:max-w-none">
                       <img
                         alt="SEO analytics screenshot"
-                        src="https://tailwindcss.com/plus-assets/img/component-images/project-app-screenshot.png"
+                        src="https://images.unsplash.com/photo-1686061593213-98dad7c599b9?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         width={2432}
                         height={1442}
                         className="-mb-12 w-[57rem] max-w-none rounded-tl-xl bg-gray-800 ring-1 ring-white/10"
@@ -469,7 +469,7 @@ export default function Services() {
           <div className="overflow-hidden py-24 sm:py-32">
             <div className="mx-auto max-w-7xl md:px-6 lg:px-8">
               <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">
-                <div className="px-6 lg:px-0 lg:pr-4 lg:pt-4">
+                <div className="px-6 lg:px-0 lg:pr-4 lg:pt-4 order-2">
                   <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
                     <h2 className="text-base/7 font-semibold text-indigo-600">
                       Seamless Connections
@@ -507,7 +507,7 @@ export default function Services() {
                     <div className="mx-auto max-w-2xl sm:mx-0 sm:max-w-none">
                       <img
                         alt="Integration dashboard screenshot"
-                        src="https://tailwindcss.com/plus-assets/img/component-images/project-app-screenshot.png"
+                        src="https://images.unsplash.com/photo-1644325349124-d1756b79dd42?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         width={2432}
                         height={1442}
                         className="-mb-12 w-[57rem] max-w-none rounded-tl-xl bg-gray-800 ring-1 ring-white/10"
@@ -566,7 +566,7 @@ export default function Services() {
                     <div className="mx-auto max-w-2xl sm:mx-0 sm:max-w-none">
                       <img
                         alt="Content creation portfolio screenshot"
-                        src="https://tailwindcss.com/plus-assets/img/component-images/project-app-screenshot.png"
+                        src="https://images.unsplash.com/photo-1729710877242-6305c22c18b8?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         width={2432}
                         height={1442}
                         className="-mb-12 w-[57rem] max-w-none rounded-tl-xl bg-gray-800 ring-1 ring-white/10"
