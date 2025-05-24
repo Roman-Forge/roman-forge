@@ -1,13 +1,11 @@
 // Import the Resend library (ensure it's compatible with Cloudflare Workers)
 import { Resend } from "resend";
 
-
 // functions/subscribe.js
 export async function onRequestPost(context) {
   const { request } = context;
   const resend = new Resend(context.env.YOUR_RESEND_API_KEY);
-  
-  
+
   try {
     // Parse the request body
     const { email } = await request.json();
@@ -40,4 +38,3 @@ export async function onRequestPost(context) {
     });
   }
 }
-

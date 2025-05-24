@@ -1,4 +1,3 @@
-
 export default function Contact() {
   return (
     <div className="relative bg-white">
@@ -21,7 +20,10 @@ export default function Contact() {
             <form action="#" method="POST" className="mt-16">
               <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                 <div>
-                  <label htmlFor="first-name" className="block text-sm/6 font-semibold text-gray-900">
+                  <label
+                    htmlFor="first-name"
+                    className="block text-sm/6 font-semibold text-gray-900"
+                  >
                     First name
                   </label>
                   <div className="mt-2.5">
@@ -35,7 +37,10 @@ export default function Contact() {
                   </div>
                 </div>
                 <div>
-                  <label htmlFor="last-name" className="block text-sm/6 font-semibold text-gray-900">
+                  <label
+                    htmlFor="last-name"
+                    className="block text-sm/6 font-semibold text-gray-900"
+                  >
                     Last name
                   </label>
                   <div className="mt-2.5">
@@ -49,7 +54,10 @@ export default function Contact() {
                   </div>
                 </div>
                 <div className="sm:col-span-2">
-                  <label htmlFor="email" className="block text-sm/6 font-semibold text-gray-900">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm/6 font-semibold text-gray-900"
+                  >
                     Email
                   </label>
                   <div className="mt-2.5">
@@ -63,7 +71,10 @@ export default function Contact() {
                   </div>
                 </div>
                 <div className="sm:col-span-2">
-                  <label htmlFor="company" className="block text-sm/6 font-semibold text-gray-900">
+                  <label
+                    htmlFor="company"
+                    className="block text-sm/6 font-semibold text-gray-900"
+                  >
                     Company
                   </label>
                   <div className="mt-2.5">
@@ -78,7 +89,10 @@ export default function Contact() {
                 </div>
                 <div className="sm:col-span-2">
                   <div className="flex justify-between text-sm/6">
-                    <label htmlFor="phone" className="block font-semibold text-gray-900">
+                    <label
+                      htmlFor="phone"
+                      className="block font-semibold text-gray-900"
+                    >
                       Phone
                     </label>
                     <p id="phone-description" className="text-gray-400">
@@ -98,7 +112,10 @@ export default function Contact() {
                 </div>
                 <div className="sm:col-span-2">
                   <div className="flex justify-between text-sm/6">
-                    <label htmlFor="message" className="block text-sm/6 font-semibold text-gray-900">
+                    <label
+                      htmlFor="message"
+                      className="block text-sm/6 font-semibold text-gray-900"
+                    >
                       How can we help you?
                     </label>
                     <p id="message-description" className="text-gray-400">
@@ -112,12 +129,14 @@ export default function Contact() {
                       rows={4}
                       aria-describedby="message-description"
                       className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
-                      defaultValue={''}
+                      defaultValue={""}
                     />
                   </div>
                 </div>
                 <fieldset className="sm:col-span-2">
-                  <legend className="block text-sm/6 font-semibold text-gray-900">Expected budget</legend>
+                  <legend className="block text-sm/6 font-semibold text-gray-900">
+                    Expected budget
+                  </legend>
                   <div className="mt-4 space-y-4 text-sm/6 text-gray-600">
                     <div className="flex gap-x-2.5">
                       <input
@@ -175,5 +194,5 @@ export default function Contact() {
         </div>
       </div>
     </div>
-  )
+  );
 }

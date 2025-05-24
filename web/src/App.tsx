@@ -1,6 +1,6 @@
-import React from 'react';
-import GradientBackground from './components/GradientBackground';
-import ComingSoon from './components/ComingSoon';
+import React from "react";
+import GradientBackground from "./components/GradientBackground";
+import ComingSoon from "./components/ComingSoon";
 
 function App() {
   return (
