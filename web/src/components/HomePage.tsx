@@ -85,8 +85,8 @@ export default function HomePage() {
 
   return (
     <>
-      <section className="flex container mx-auto py-8">
-        <div className="w-1/2 mr-auto flex flex-col justify-center">
+      <section className="flex flex-col lg:flex-row container mx-auto px-3 lg:px-0 py-8">
+        <div className="w-full lg:w-1/2 mr-auto mb-16 lg:mb-16 flex flex-col justify-center">
           <h1 className="font-lexend text-6xl font-semibold mb-4">
             Welcome to Roman Forge – Your Web Experts!
           </h1>
@@ -104,15 +104,15 @@ export default function HomePage() {
           />
         </div>
       </section>
-      <section className="container mx-auto mb-32 py-6 bg-sand flex justify-center">
-        <div className="mr-6 relative before:translate-y-16 before:rotate-3 before:content-[''] before:absolute before:bottom-0 before:right-0 before:bg-deepteal before:w-full before:h-full">
+      <section className="flex-col lg:flex-row container mx-auto mb-32 py-6 bg-sand flex justify-center">
+        <div className="mx-6 lg:mr-6 relative lg:before:translate-y-0 before:translate-y-16 before:rotate-3 before:content-[''] before:absolute before:bottom-0 before:right-0 before:bg-deepteal before:w-full before:h-full">
           <img
             src="/roman-portrait.jpg"
             alt="Jacob Roman, CEO of Roman Forge"
-            className="w-96 translate-y-16"
+            className="w-96 translate-y-0 lg:translate-y-16"
           />
         </div>
-        <div className="translate-y-16 w-1/3 pl-10">
+        <div className="translate-y-0 lg:translate-y-16 w-full lg:w-1/3 pl-10 pt-10 lg:pt-0">
           <h2 className="font-bold flex items-center mb-4">
             <svg
               className="mr-2"
@@ -140,7 +140,7 @@ export default function HomePage() {
           </h4>
         </div>
       </section>
-      <section className="container mx-auto mb-20">
+      <section className="container mx-auto mb-20 px-4 lg:px-0">
         <h2 className="font-bold flex items-center mb-4">
           <svg
             className="mr-2"
@@ -157,7 +157,7 @@ export default function HomePage() {
         <h3 className="font-garamond text-5xl mb-10">
           Your One-Stop Web Solution
         </h3>
-        <ul className="grid grid-cols-3 gap-4">
+        <ul className="grid lg:grid-cols-3 gap-4 grid-cols-1">
           {services.map((service) => (
             <li
               key={service.name}
@@ -182,8 +182,7 @@ export default function HomePage() {
           ))}
         </ul>
       </section>
-      <section>
-        <section className="p-20">
+        <section className="hidden lg:display p-20">
           <div className="px-4 md:px-6 max-w-6xl mx-auto">
             <div>
               <div x-data="{ activeTab: 1 }">
@@ -466,11 +465,10 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-        </section>
       </section>
-      <section className="bg-deepteal">
-        <div className="container mx-auto flex flex-row">
-          <div className="flex justify-center flex-col">
+      <section className="bg-deepteal pb-16 lg:pb-0">
+        <div className="container mx-auto flex lg:flex-row flex-col-reverse">
+          <div className="flex justify-center flex-col px-6 lg:px-0">
             <h2 className="font-bold flex items-center mb-4 text-white">
               <svg
                 className="mr-2"
@@ -492,7 +490,7 @@ export default function HomePage() {
               a seamless digital experience tailored to your goals.
             </p>
           </div>
-          <div className="px-24 py-20 w-2/3">
+          <div className="px-6 lg:px-24 py-8 lg:py-20 w-full lg:w-2/3">
             <img src="./dev-computer.png" alt="icon of development computer" />
           </div>
         </div>

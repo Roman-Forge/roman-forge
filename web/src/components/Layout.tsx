@@ -12,7 +12,7 @@ export default function Layout() {
     return (
       <div className="font-lexend bg-[url('/web-background.png')] bg-cover relative overflow-hidden bg-repeat">
         <header className="bg-white">
-          <div className="border-b">
+          <div className="border-b hidden lg:block">
             <div className="container mx-auto py-4 flex justify-between items-center">
               <span>Lets forge a future together</span>
               <div className="flex font-bold items-center">
@@ -25,11 +25,11 @@ export default function Layout() {
             </div>
           </div>
           <div className="border-b">
-            <div className="flex container mx-auto justify-between items-center border-r py-3">
+            <div className="flex flex-col lg:flex-row container mx-auto justify-between items-center border-r py-3">
               <Link to="/">
                 <HeaderLogo />
               </Link>
-              <nav className="flex font-semibold justify-evenly w-1/3">
+              <nav className="flex flex-col lg:flex-row font-semibold justify-evenly w-1/3">
                 <Link to="/about">ABOUT</Link>
                 <Link to="/process">PROCESS</Link>
                 <Link to="/services">SERVICES</Link>
@@ -38,7 +38,7 @@ export default function Layout() {
             </div>
           </div>
         </header>
-        <div className="absolute -z-10 -top-72 translate-x-[500px]">
+        <div className="hidden lg:block absolute -z-10 -top-72 translate-x-[500px]">
           <img
             src="./logo-circle.png"
             alt="Animated Roman Forge Logo"
