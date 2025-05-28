@@ -162,7 +162,7 @@ export default function Services() {
   return (
     <>
       <section className="bg-deepteal">
-        <div className="container mx-auto py-10">
+        <div className="container mx-auto py-10 px-6 lg:px-0">
           <h1 className="font-lexend text-5xl text-white font-semibold">
             Services
           </h1>

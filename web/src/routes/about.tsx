@@ -156,7 +156,7 @@ export default function About() {
 
       {/* Content section */}
       <section className="flex justify-center bg-sand">
-        <div className="flex flex-col justify-center container mx-60 py-20">
+        <div className="flex flex-col justify-center container mx-6 lg:mx-60 py-20">
           <h2 className="font-bold flex items-center mb-4 text-deepteal">
             <svg
               className="mr-2"
