@@ -1,4 +1,58 @@
+import { useState } from 'react';
+
 export default function Contact() {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    company: "",
+    phone: "",
+    message: "",
+    budget: "",
+  });
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">('idle');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("loading");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.details || data.error || "Failed to send message");
+      }
+
+      setStatus("success");
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        company: "",
+        phone: "",
+        message: "",
+        budget: "",
+      });
+    } catch (error) {
+      setStatus("error");
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+  
+  
   return (
     <div className="relative bg-white">
       <div className="lg:absolute lg:inset-0 lg:left-1/2">
@@ -17,7 +71,7 @@ export default function Contact() {
             <p className="mt-2 text-lg/8 text-gray-600">
               Let's forge a future together that is built to last.
             </p>
-            <form action="#" method="POST" className="mt-16">
+            <form onSubmit={handleSubmit} method="POST" className="mt-16">
               <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                 <div>
                   <label
@@ -28,9 +82,12 @@ export default function Contact() {
                   </label>
                   <div className="mt-2.5">
                     <input
-                      id="first-name"
-                      name="first-name"
+                      id="firstName"
+                      name="firstName"
                       type="text"
+                      required
+                      value={formData.firstName}
+                      onChange={handleChange}
                       autoComplete="given-name"
                       className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
                     />
@@ -45,9 +102,12 @@ export default function Contact() {
                   </label>
                   <div className="mt-2.5">
                     <input
-                      id="last-name"
-                      name="last-name"
+                      id="lastName"
+                      name="lastName"
                       type="text"
+                      required
+                      value={formData.lastName}
+                      onChange={handleChange}
                       autoComplete="family-name"
                       className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
                     />
@@ -65,6 +125,9 @@ export default function Contact() {
                       id="email"
                       name="email"
                       type="email"
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
                       autoComplete="email"
                       className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
                     />
@@ -82,6 +145,9 @@ export default function Contact() {
                       id="company"
                       name="company"
                       type="text"
+                      required
+                      value={formData.company}
+                      onChange={handleChange}
                       autoComplete="organization"
                       className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
                     />
@@ -104,6 +170,8 @@ export default function Contact() {
                       id="phone"
                       name="phone"
                       type="tel"
+                      value={formData.phone}
+                      onChange={handleChange}
                       autoComplete="tel"
                       aria-describedby="phone-description"
                       className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
@@ -126,10 +194,13 @@ export default function Contact() {
                     <textarea
                       id="message"
                       name="message"
+                      required
+                      value={formData.message}
+                      onChange={handleChange}
                       rows={4}
+                      maxLength={500}
                       aria-describedby="message-description"
                       className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
-                      defaultValue={""}
                     />
                   </div>
                 </div>
@@ -138,57 +209,42 @@ export default function Contact() {
                     Expected budget
                   </legend>
                   <div className="mt-4 space-y-4 text-sm/6 text-gray-600">
-                    <div className="flex gap-x-2.5">
-                      <input
-                        defaultValue="under_25k"
-                        id="budget-under-25k"
-                        name="budget"
-                        type="radio"
-                        className="relative mt-1 size-4 appearance-none rounded-full border border-gray-300 before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden"
-                      />
-                      <label htmlFor="budget-under-25k">Less than $25K</label>
-                    </div>
-                    <div className="flex gap-x-2.5">
-                      <input
-                        defaultValue="25k-50k"
-                        id="budget-25k-50k"
-                        name="budget"
-                        type="radio"
-                        className="relative mt-1 size-4 appearance-none rounded-full border border-gray-300 before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden"
-                      />
-                      <label htmlFor="budget-25k-50k">$25K – $50K</label>
-                    </div>
-                    <div className="flex gap-x-2.5">
-                      <input
-                        defaultValue="50k-100k"
-                        id="budget-50k-100k"
-                        name="budget"
-                        type="radio"
-                        className="relative mt-1 size-4 appearance-none rounded-full border border-gray-300 before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden"
-                      />
-                      <label htmlFor="budget-50k-100k">$50K – $100K</label>
-                    </div>
-                    <div className="flex gap-x-2.5">
-                      <input
-                        defaultValue="over_100k"
-                        id="budget-over-100k"
-                        name="budget"
-                        type="radio"
-                        className="relative mt-1 size-4 appearance-none rounded-full border border-gray-300 before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden"
-                      />
-                      <label htmlFor="budget-over-100k">$100K+</label>
-                    </div>
+                    {[
+                      { id: "under_25k", label: "Less than $25K" },
+                      { id: "25k-50k", label: "$25K – $50K" },
+                      { id: "50k-100k", label: "$50K – $100K" },
+                      { id: "over_100k", label: "$100K+" },
+                    ].map((option) => (
+                      <div key={option.id} className="flex gap-x-2.5">
+                        <input
+                          id={`budget-${option.id}`}
+                          name="budget"
+                          type="radio"
+                          value={option.id}
+                          checked={formData.budget === option.id}
+                          onChange={handleChange}
+                          className="relative mt-1 size-4 appearance-none rounded-full border border-gray-300 before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden"
+                        />
+                        <label htmlFor={`budget-${option.id}`}>{option.label}</label>
+                      </div>
+                    ))}
                   </div>
                 </fieldset>
               </div>
               <div className="mt-10 flex justify-end border-t border-gray-900/10 pt-8">
                 <button
                   type="submit"
+                  disabled={status === 'loading'}
                   className="rounded-md bg-deepteal px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-emerald-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
-                  Send message
+                  {status === "loading" ? "Sending...." : "Send message"}
                 </button>
               </div>
+              {status === 'success' && (
+                <p className="mt-4 text-green-600 text-sm">Thank you for your message! We'll get back to you soon.</p>
+              )}
+              {status === 'error' && (
+                <p className="mt-4 text-red-600 text-sm">Something went wrong. Please try again later.</p>)}
             </form>
           </div>
         </div>
