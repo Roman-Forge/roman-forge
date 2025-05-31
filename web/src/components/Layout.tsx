@@ -2,7 +2,6 @@ import { useFeatureFlagEnabled } from "posthog-js/react";
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useState, useEffect } from 'react';
 import { Link, Outlet } from "@tanstack/react-router";
-import HeaderLogo from "./HeaderLogo";
 import Footer from "./Footer";
 
 export default function Layout() {
@@ -15,7 +14,7 @@ export default function Layout() {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      if (currentScrollY > lastScrollY) {
+      if (currentScrollY > 200 && currentScrollY > lastScrollY) {
         // Scroll down
         setIsHeaderVisible(false);
       } else {
@@ -37,7 +36,7 @@ export default function Layout() {
     return (
       <div className="font-lexend bg-[url('/web-background.png')] bg-cover relative overflow-hidden bg-repeat">
         <header 
-          className={`bg-white fixed w-full top-0 z-50 transition-transform duration-300 ${
+          className={`bg-deepteal text-sand fixed w-full top-0 z-50 transition-transform duration-300 ${
             isHeaderVisible ? "translate-y-0" : "-translate-y-full"
           }`}
         >
@@ -47,7 +46,7 @@ export default function Layout() {
               <div className="flex font-bold items-center">
                 <div className="mr-8">contact@romanforge.dev</div>
                 <div className="mr-8">(517) 258-2462</div>
-                <Link className="bg-deepteal text-sand py-2 px-3" to="/contact">
+                <Link className="bg-sand text-deepteal py-2 px-3" to="/contact">
                   GET QUOTE
                 </Link>
               </div>
@@ -57,7 +56,7 @@ export default function Layout() {
             <div className="flex flex-col lg:flex-row container mx-auto justify-between items-center border-r py-3">
               <div className="flex justify-between items-center w-full lg:w-auto">
                 <Link to="/">
-                  <HeaderLogo />
+                  <img className="h-24" src="/new-logo.svg" alt="Roman Forge Logo"/>
                 </Link>
                 <button
                   className="lg:hidden p-2"

@@ -10,6 +10,7 @@ import {
   SparklesIcon,
   WrenchScrewdriverIcon,
 } from "@heroicons/react/20/solid";
+import ServiceCard from "../components/ServiceCard";
 
 const websiteDesignFeatures = [
   {
@@ -161,16 +162,115 @@ const contentCreationFeatures = [
 export default function Services() {
   return (
     <>
+
+      <div className="bg-white container mx-auto">
+      <div 
+        className="bg-[url('https://images.unsplash.com/photo-1523652477945-07d1377e0e50?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover h-44"></div>
       <section className="bg-deepteal">
-        <div className="container mx-auto py-10 px-6 lg:px-0">
+        <div className="container mx-auto py-10 px-6">
           <h1 className="font-lexend text-5xl text-white font-semibold">
             Services
           </h1>
         </div>
       </section>
-      <div className="bg-white container mx-auto">
+        {/* Web Development Cards */}
+        <section className="py-16">
+          <h2 className="text-3xl font-bold mb-8 text-center text-deepteal">
+            Web Development Packages
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 px-8">
+            <ServiceCard
+              title="Basic Website"
+              price="$500 – $1,500"
+              details="Simple design, 5-10 pages, basic SEO, one revision."
+              features={websiteDesignFeatures}
+              icon={PaintBrushIcon}
+            />
+            <ServiceCard
+              title="Small Business Website"
+              price="$1,500 – $3,000"
+              details="10-20 pages, custom design, contact forms, blog, SEO, two revisions."
+              features={websiteDesignFeatures}
+              icon={SparklesIcon}
+            />
+            <ServiceCard
+              title="E-commerce Website"
+              price="$3,000 – $10,000"
+              details="Product listings, payment gateways, custom admin, SEO, two revisions."
+              features={ecommerceFeatures}
+              icon={ShoppingCartIcon}
+            />
+            <ServiceCard
+              title="Custom Web Application"
+              price="$5,000+"
+              details="Complex functionalities, custom development, scalable architecture."
+              features={webAppFeatures}
+              icon={CodeBracketIcon}
+            />
+          </div>
+        </section>
+
+        {/* Maintenance & Support Cards */}
+        <section className="py-16">
+          <h2 className="text-3xl font-bold mb-8 text-center text-deepteal">
+            Hosting, Maintenance, & Support
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-8">
+            <ServiceCard
+              title="Basic"
+              price="$100/month"
+              details="Monthly backups, software updates, basic security, 2 support tickets/month."
+              features={maintenanceFeatures}
+              icon={WrenchScrewdriverIcon}
+            />
+            <ServiceCard
+              title="Standard"
+              price="$150/month"
+              details="Weekly backups, enhanced security, performance optimization, 5 support tickets/month."
+              features={maintenanceFeatures}
+              icon={LockClosedIcon}
+            />
+            <ServiceCard
+              title="Premium"
+              price="$200/month"
+              details="Daily backups, advanced security, unlimited support, 2-hour response time."
+              features={maintenanceFeatures}
+              icon={ServerIcon}
+            />
+          </div>
+        </section>
+
+        {/* Other Services */}
+        <section className="py-16">
+          <h2 className="text-3xl font-bold mb-8 text-center text-deepteal">
+            Additional Services
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-8 gap-8">
+            <ServiceCard
+              title="SEO Services"
+              price="Included / Custom"
+              details="Boost your online visibility with expert SEO."
+              features={seoFeatures}
+              icon={MagnifyingGlassIcon}
+            />
+            <ServiceCard
+              title="Website Integrations"
+              price="Custom"
+              details="Connect your site to third-party services and APIs."
+              features={integrationsFeatures}
+              icon={CloudArrowUpIcon}
+            />
+            <ServiceCard
+              title="Content Creation"
+              price="Custom"
+              details="Logos, blog posts, and social media graphics."
+              features={contentCreationFeatures}
+              icon={PaintBrushIcon}
+            />
+          </div>
+        </section>
+
         <section>
-          <div className="bg-[url('https://images.unsplash.com/photo-1523652477945-07d1377e0e50?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover h-44"></div>
           <div className="overflow-hidden bg-white py-24 sm:py-32">
             <div className="mx-auto max-w-7xl md:px-6 lg:px-8">
               <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">

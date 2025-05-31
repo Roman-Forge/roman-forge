@@ -43,7 +43,7 @@ export default function About() {
   return (
     <main className="isolate">
       {/* Hero section */}
-      <div className="relative isolate -z-10">
+      <div className="relative isolate bg-white container mx-auto bg-opacity-85 -z-10">
         <svg
           aria-hidden="true"
           className="absolute inset-x-0 top-0 -z-10 h-[64rem] w-full stroke-gray-200 [mask-image:radial-gradient(32rem_32rem_at_center,white,transparent)]"
@@ -185,21 +185,23 @@ export default function About() {
       </section>
 
       {/* Values section */}
-      <div className="mx-auto mt-32 mb-20 max-w-7xl px-6 sm:mt-40 lg:px-8">
-        <div className="mx-auto max-w-2xl lg:mx-0">
-          <h2 className="text-pretty text-4xl font-semibold tracking-tight text-deepteal sm:text-5xl">
-            Our values
-          </h2>
+      <section className="flex bg-white container mx-auto bg-opacity-85">
+        <div className="mx-auto mt-32 mb-20 max-w-7xl px-6 sm:mt-40 lg:px-8">
+          <div className="mx-auto max-w-2xl lg:mx-0">
+            <h2 className="text-pretty text-4xl font-semibold tracking-tight text-deepteal sm:text-5xl">
+              Our values
+            </h2>
+          </div>
+          <dl className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 text-base/7 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+            {values.map((value) => (
+              <div key={value.name}>
+                <dt className="font-semibold text-gray-900">{value.name}</dt>
+                <dd className="mt-1 text-gray-600">{value.description}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
-        <dl className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 text-base/7 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-          {values.map((value) => (
-            <div key={value.name}>
-              <dt className="font-semibold text-gray-900">{value.name}</dt>
-              <dd className="mt-1 text-gray-600">{value.description}</dd>
-            </div>
-          ))}
-        </dl>
-      </div>
+      </section>
     </main>
   );
 }

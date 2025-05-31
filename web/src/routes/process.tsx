@@ -34,15 +34,16 @@ export default function Process() {
 
   return (
     <>
+
+      <section className="container mx-auto bg-white">
+      <div className="bg-[url('https://images.unsplash.com/photo-1523652477945-07d1377e0e50?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover h-44"></div>
       <section className="bg-deepteal">
-        <div className="container mx-auto py-10 px-6 lg:px-0">
+        <div className="container mx-auto py-10 px-6">
           <h1 className="font-lexend text-5xl text-white font-semibold">
             Process
           </h1>
         </div>
       </section>
-      <section className="container mx-auto bg-white">
-        <div className="bg-[url('https://images.unsplash.com/photo-1523652477945-07d1377e0e50?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover h-44"></div>
         <div className="bg-white py-16 sm:py-24">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-2xl text-center">
@@ -62,7 +63,7 @@ export default function Process() {
                   key={step.number}
                   className="flex flex-col gap-4 sm:flex-row sm:items-start"
                 >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-indigo-600 text-white sm:shrink-0">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-deepteal text-white sm:shrink-0">
                     <span className="text-xl font-semibold">{step.number}</span>
                   </div>
                   <div className="sm:flex-1">
