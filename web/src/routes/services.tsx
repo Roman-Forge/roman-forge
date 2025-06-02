@@ -9,6 +9,7 @@ import {
   DocumentTextIcon,
   SparklesIcon,
   WrenchScrewdriverIcon,
+  CheckCircleIcon,
 } from "@heroicons/react/20/solid";
 import ServiceCard from "../components/ServiceCard";
 
@@ -17,19 +18,19 @@ const websiteDesignFeatures = [
     name: "Responsive Design",
     description:
       "We create mobile-friendly websites using HTML, CSS, and JavaScript, ensuring a seamless experience across all devices.",
-    icon: PaintBrushIcon,
+    icon: CheckCircleIcon,
   },
   {
     name: "Custom Styling",
     description:
       "Our team delivers tailored designs with frameworks like React, perfectly aligned with your brand identity.",
-    icon: SparklesIcon,
+    icon: CheckCircleIcon,
   },
   {
     name: "Basic SEO Setup",
     description:
       "Every site includes foundational SEO to improve visibility, with options for advanced optimization.",
-    icon: MagnifyingGlassIcon,
+    icon: CheckCircleIcon,
   },
 ];
 
@@ -267,6 +268,77 @@ export default function Services() {
               features={contentCreationFeatures}
               icon={PaintBrushIcon}
             />
+          </div>
+        </section>
+
+        <section className="mx-12">
+          <div className="flex flex-col border-4 border-gray-500 bg-slate-200 rounded-lg hover:border-deepteal hover:shadow-sm">
+            <div className="flex flex-row justify-between items-center py-8 px-6 border-b-4 border-gray-500">
+              <div>
+                <h2 className="text-base/7 font-semibold text-deepteal">
+                  Creative Web Solutions
+                </h2>
+                <p className="mt-2 text-pretty text-xl font-semibold tracking-tight text-gray-900">
+                  Website Design and Development
+                </p>
+                <div className="text-lg font-semibold text-deepteal">$500 - $1,500</div>
+              </div>
+              <div className="relative w-32 h-32 rounded-full overflow-hidden flex justify-center items-center">
+                <img
+                  src="https://images.unsplash.com/photo-1579403124614-197f69d8187b?fm=jpg&q=80&w=2432&h=1442&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="Roman Forge Web Development Image"
+                  width={200}
+                  height={200}
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-3 gap-8 px-6 py-10">
+              <dl>
+                {websiteDesignFeatures.map((feature) => (
+                  <div key={feature.name} className="relative pl-9">
+                    <dt className="inline font-semibold text-gray-900">
+                      <feature.icon
+                        aria-hidden="true"
+                        className="absolute left-1 top-1 size-5 text-deepteal"
+                      />
+                      {feature.name}
+                    </dt>{" "}
+                    <dd className="inline">{feature.description}</dd>
+                  </div>
+                ))}
+              </dl>
+              <dl>
+                {websiteDesignFeatures.map((feature) => (
+                  <div key={feature.name} className="relative pl-9">
+                    <dt className="inline font-semibold text-gray-900">
+                      <feature.icon
+                        aria-hidden="true"
+                        className="absolute left-1 top-1 size-5 text-deepteal"
+                      />
+                      {feature.name}
+                    </dt>{" "}
+                    <dd className="inline">{feature.description}</dd>
+                  </div>
+                ))}
+              </dl>
+              <dl>
+                {websiteDesignFeatures.map((feature) => (
+                  <div key={feature.name} className="relative pl-9">
+                    <dt className="inline font-semibold text-gray-900">
+                      <feature.icon
+                        aria-hidden="true"
+                        className="absolute left-1 top-1 size-5 text-deepteal"
+                      />
+                      {feature.name}
+                    </dt>{" "}
+                    <dd className="inline">{feature.description}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+            <div className="flex px-6 pb-8">
+              <a href="#" className="bg-sand text-deepteal py-2 px-3">Contact about Website Design and Development package</a>
+            </div>
           </div>
         </section>
 

@@ -56,7 +56,7 @@ export default function Layout() {
             <div className="flex flex-col lg:flex-row container mx-auto justify-between items-center border-r py-3">
               <div className="flex justify-between items-center w-full lg:w-auto">
                 <Link to="/">
-                  <img className="h-24" src="/new-logo.svg" alt="Roman Forge Logo"/>
+                  <img className="h-16" src="/new-logo.svg" alt="Roman Forge Logo"/>
                 </Link>
                 <button
                   className="lg:hidden p-2"
