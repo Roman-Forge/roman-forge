@@ -1,33 +1,14 @@
 import { useFeatureFlagEnabled } from "posthog-js/react";
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link, Outlet } from "@tanstack/react-router";
 import Footer from "./Footer";
 
 export default function Layout() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const flagEnabled = useFeatureFlagEnabled("test-flag");
   
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
 
-      if (currentScrollY > 200 && currentScrollY > lastScrollY) {
-        // Scroll down
-        setIsHeaderVisible(false);
-      } else {
-        // Scroll up
-        setIsHeaderVisible(true);
-      }
-
-      setLastScrollY(currentScrollY);
-    }
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
   
   if (
     (flagEnabled && window.location.origin === "https://forge-5v1.pages.dev") ||
@@ -36,9 +17,7 @@ export default function Layout() {
     return (
       <div className="font-lexend bg-[url('/web-background.png')] bg-cover relative overflow-hidden bg-repeat">
         <header 
-          className={`bg-deepteal text-sand fixed w-full top-0 z-50 transition-transform duration-300 ${
-            isHeaderVisible ? "translate-y-0" : "-translate-y-full"
-          }`}
+          className="bg-deepteal text-sand fixed w-full top-0 z-50 transition-transform duration-300"
         >
           <div className="border-b hidden lg:block">
             <div className="container mx-auto py-4 flex justify-between items-center">
