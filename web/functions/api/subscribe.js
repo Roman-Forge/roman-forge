@@ -1,16 +1,10 @@
-// Import the Resend library (ensure it's compatible with Cloudflare Workers)
-import { Resend } from "resend";
-
-// functions/subscribe.js
 export async function onRequestPost(context) {
   const { request } = context;
-  const resend = new Resend(context.env.YOUR_RESEND_API_KEY);
+  const apiKey = context.env.YOUR_RESEND_API_KEY;
 
   try {
-    // Parse the request body
     const { email } = await request.json();
 
-    // Validate email
     if (!email) {
       return new Response(JSON.stringify({ error: "Email required" }), {
         status: 400,
@@ -18,21 +12,37 @@ export async function onRequestPost(context) {
       });
     }
 
-    // Call Resend API to create a contact
-    await resend.contacts.create({
-      email: email,
-      unsubscribed: false,
-      audienceId: "30a19f1f-ed50-4481-a6ee-2cb54704beab",
-    });
+    const res = await fetch(
+      "https://api.resend.com/audiences/30a19f1f-ed50-4481-a6ee-2cb54704beab/contacts",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          unsubscribed: false,
+        }),
+      }
+    );
 
-    // Return success response
+    if (!res.ok) {
+      const err = await res.text();
+      console.error("Resend API error:", res.status, err);
+      return new Response(
+        JSON.stringify({ error: "Failed to subscribe", details: err }),
+        { status: 502, headers: { "Content-Type": "application/json" } }
+      );
+    }
+
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
   } catch (err) {
-    // Handle errors
-    return new Response(JSON.stringify({ error: "Failed to send email" }), {
+    console.error("Error subscribing:", err);
+    return new Response(JSON.stringify({ error: "Failed to subscribe" }), {
       status: 500,
       headers: { "Content-Type": "application/json" },
     });

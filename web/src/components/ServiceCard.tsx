@@ -3,13 +3,11 @@ import React from "react";
 
 export default function ServiceCard({
   title,
-  price,
   details,
   features,
   icon: Icon,
 }: {
   title: string;
-  price: string;
   details: string;
   features: { name: string; description: string; icon: any }[];
   icon: any;
@@ -20,7 +18,6 @@ export default function ServiceCard({
         <Icon className="h-8 w-8 text-deepteal" />
         <h3 className="text-2xl font-bold text-gray-900">{title}</h3>
       </div>
-      <div className="text-lg font-semibold text-deepteal">{price}</div>
       <div className="text-gray-600">{details}</div>
       <ul className="mt-2 space-y-2">
         {features.map((feature) => (

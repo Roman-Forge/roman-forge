@@ -2,6 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ═══════════════════════════════════════════
+   THEME CSS CUSTOM PROPERTIES
+═══════════════════════════════════════════ */
+:root {
+  /* Dark theme (default) */
+  --bg: #0B0D0C;
+  --bg-card: #0F1211;
+  --bg-elevated: #131716;
+  --text: #E8E6E3;
+  --text-muted: #9A9895;
+  --text-dim: #5A5855;
+  --gold: #EFD7AB;
+  --gold-dim: rgba(239, 215, 171, 0.5);
+  --border: rgba(239, 215, 171, 0.1);
+  --border-strong: rgba(239, 215, 171, 0.18);
+  --teal: #123E3D;
+  --accent: #D4AF37;
+  --grid-line: rgba(239, 215, 171, 0.045);
+  --gold-highlight: rgba(239, 215, 171, 0.05);
+  --bg-hover: #131716;
+}
+
+[data-theme="light"] {
+  --bg: #FAF6F0;
+  --bg-card: #FFFFFF;
+  --bg-elevated: #F0EBE3;
+  --text: #1C1917;
+  --text-muted: #57534E;
+  --text-dim: #A8A29E;
+  --gold: #B8860B;
+  --gold-dim: rgba(184, 134, 11, 0.5);
+  --border: rgba(184, 134, 11, 0.12);
+  --border-strong: rgba(184, 134, 11, 0.22);
+  --teal: #123E3D;
+  --accent: #B8860B;
+  --grid-line: rgba(184, 134, 11, 0.06);
+  --gold-highlight: rgba(184, 134, 11, 0.06);
+  --bg-hover: #F0EBE3;
+}
+
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 html,
 body {
   margin: 0;
@@ -43,6 +87,38 @@ body {
 .animate-float-4s-2s {
   animation: float 4s ease-in-out infinite 2s both;
 }
+.hover-card:hover {
+  background-color: var(--bg-hover) !important;
+}
+
+/* Corner bracket decorations — 4 L-shaped corners via gradient backgrounds on 2 pseudo-elements */
+.bracket-corners {
+  position: relative;
+}
+.bracket-corners::before,
+.bracket-corners::after {
+  content: "";
+  position: absolute;
+  left: -1px;
+  right: -1px;
+  height: 1rem;
+  pointer-events: none;
+  z-index: 1;
+  background:
+    linear-gradient(var(--gold-dim), var(--gold-dim)) top left / 1rem 1px no-repeat,
+    linear-gradient(var(--gold-dim), var(--gold-dim)) top left / 1px 100% no-repeat,
+    linear-gradient(var(--gold-dim), var(--gold-dim)) top right / 1rem 1px no-repeat,
+    linear-gradient(var(--gold-dim), var(--gold-dim)) top right / 1px 100% no-repeat;
+}
+.bracket-corners::before {
+  top: -1px;
+}
+.bracket-corners::after {
+  bottom: -1px;
+  transform: scaleY(-1);
+}
+
+
 .center-logo:before {
   background: conic-gradient(from 180deg, transparent, #123e3d) border-box;
   mask:

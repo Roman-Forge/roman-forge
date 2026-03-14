@@ -1,6 +1,14 @@
-import { useState } from 'react';
+import { useState } from "react";
+import {
+  T,
+  mono,
+  cormorant,
+  dm,
+  BracketFrame,
+  SectionHeader,
+} from "../components/design";
 
-export default function Contact() {
+export default function ContactPage() {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -8,27 +16,23 @@ export default function Contact() {
     company: "",
     phone: "",
     message: "",
-    budget: "",
   });
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">('idle');
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("loading");
-
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-
       const data = await response.json();
-
-      if (!response.ok) {
+      if (!response.ok)
         throw new Error(data.details || data.error || "Failed to send message");
-      }
-
       setStatus("success");
       setFormData({
         firstName: "",
@@ -37,215 +41,399 @@ export default function Contact() {
         company: "",
         phone: "",
         message: "",
-        budget: "",
       });
-    } catch (error) {
+    } catch {
       setStatus("error");
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
-  
-  
+
+  const inputStyle: React.CSSProperties = {
+    ...mono,
+    fontSize: "0.8rem",
+    width: "100%",
+    background: T.bg,
+    border: `1px solid ${T.border}`,
+    color: T.text,
+    padding: "0.75rem 1rem",
+    outline: "none",
+    letterSpacing: "0.02em",
+  };
+
+  const labelStyle: React.CSSProperties = {
+    ...mono,
+    fontSize: "0.65rem",
+    textTransform: "uppercase",
+    letterSpacing: "0.15em",
+    color: T.gold,
+    display: "block",
+    marginBottom: "0.5rem",
+  };
+
   return (
-    <div className="relative bg-white">
-      <div className="lg:absolute lg:inset-0 lg:left-1/2">
-        <img
-          alt=""
-          src="https://images.unsplash.com/photo-1630413952708-30e145d3d475?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&crop=focalpoint&fp-x=.4&w=2560&h=3413&&q=80"
-          className="h-64 w-full bg-gray-50 object-cover sm:h-80 lg:absolute lg:h-full"
+    <div>
+      {/* ══════ PAGE HERO ══════ */}
+      <div className="container mx-auto mt-2 py-20">
+        <SectionHeader
+          tag="Get In Touch"
+          title="Let's forge your AI infrastructure"
+          desc="Schedule a free 30-minute assessment. We'll identify 3–5 AI opportunities in your business, provide estimates, and give you a clear path forward."
         />
       </div>
-      <div className="pb-24 pt-16 sm:pb-32 sm:pt-24 lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2 lg:pt-32">
-        <div className="px-6 lg:px-8">
-          <div className="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
-            <h2 className="text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-              We are here to help
-            </h2>
-            <p className="mt-2 text-lg/8 text-gray-600">
-              Let's forge a future together that is built to last.
-            </p>
-            <form onSubmit={handleSubmit} method="POST" className="mt-16">
-              <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-                <div>
-                  <label
-                    htmlFor="first-name"
-                    className="block text-sm/6 font-semibold text-gray-900"
+
+      {/* ══════ FORM + INFO ══════ */}
+      <div className="container mx-auto pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+          {/* Contact Info Panel */}
+          <div
+            className="p-8 lg:p-10 bracket-corners"
+            style={{
+              border: `1px solid ${T.border}`,
+              background: T.bgCard,
+              borderRight: "none",
+            }}
+          >
+            <div className="mb-8">
+              <p
+                style={{
+                  ...mono,
+                  fontSize: "0.65rem",
+                  color: T.gold,
+                  letterSpacing: "0.2em",
+                  textTransform: "uppercase",
+                  marginBottom: "1rem",
+                }}
+              >
+                Direct Contact
+              </p>
+              {[
+                {
+                  label: "Email",
+                  value: "jacob@romanforge.dev",
+                  href: "mailto:jacob@romanforge.dev",
+                },
+                {
+                  label: "Phone",
+                  value: "(810) 692-0143",
+                  href: "tel:810-692-0143",
+                },
+                {
+                  label: "Location",
+                  value: "Lansing, Michigan",
+                  href: undefined,
+                },
+              ].map((item) => (
+                <div key={item.label} className="mb-5">
+                  <p
+                    style={{
+                      ...mono,
+                      fontSize: "0.6rem",
+                      color: T.textDim,
+                      letterSpacing: "0.15em",
+                      textTransform: "uppercase",
+                      marginBottom: "0.25rem",
+                    }}
                   >
-                    First name
-                  </label>
-                  <div className="mt-2.5">
-                    <input
-                      id="firstName"
-                      name="firstName"
-                      type="text"
-                      required
-                      value={formData.firstName}
-                      onChange={handleChange}
-                      autoComplete="given-name"
-                      className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label
-                    htmlFor="last-name"
-                    className="block text-sm/6 font-semibold text-gray-900"
-                  >
-                    Last name
-                  </label>
-                  <div className="mt-2.5">
-                    <input
-                      id="lastName"
-                      name="lastName"
-                      type="text"
-                      required
-                      value={formData.lastName}
-                      onChange={handleChange}
-                      autoComplete="family-name"
-                      className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
-                    />
-                  </div>
-                </div>
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="email"
-                    className="block text-sm/6 font-semibold text-gray-900"
-                  >
-                    Email
-                  </label>
-                  <div className="mt-2.5">
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      autoComplete="email"
-                      className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
-                    />
-                  </div>
-                </div>
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="company"
-                    className="block text-sm/6 font-semibold text-gray-900"
-                  >
-                    Company
-                  </label>
-                  <div className="mt-2.5">
-                    <input
-                      id="company"
-                      name="company"
-                      type="text"
-                      required
-                      value={formData.company}
-                      onChange={handleChange}
-                      autoComplete="organization"
-                      className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
-                    />
-                  </div>
-                </div>
-                <div className="sm:col-span-2">
-                  <div className="flex justify-between text-sm/6">
-                    <label
-                      htmlFor="phone"
-                      className="block font-semibold text-gray-900"
+                    {item.label}
+                  </p>
+                  {item.href ? (
+                    <a
+                      href={item.href}
+                      className="no-underline"
+                      style={{ ...dm, fontSize: "0.85rem", color: T.text }}
                     >
-                      Phone
-                    </label>
-                    <p id="phone-description" className="text-gray-400">
-                      Optional
+                      {item.value}
+                    </a>
+                  ) : (
+                    <p style={{ ...dm, fontSize: "0.85rem", color: T.text }}>
+                      {item.value}
                     </p>
-                  </div>
-                  <div className="mt-2.5">
-                    <input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      autoComplete="tel"
-                      aria-describedby="phone-description"
-                      className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
-                    />
-                  </div>
+                  )}
                 </div>
-                <div className="sm:col-span-2">
-                  <div className="flex justify-between text-sm/6">
-                    <label
-                      htmlFor="message"
-                      className="block text-sm/6 font-semibold text-gray-900"
-                    >
-                      How can we help you?
-                    </label>
-                    <p id="message-description" className="text-gray-400">
-                      Max 500 characters
-                    </p>
-                  </div>
-                  <div className="mt-2.5">
-                    <textarea
-                      id="message"
-                      name="message"
-                      required
-                      value={formData.message}
-                      onChange={handleChange}
-                      rows={4}
-                      maxLength={500}
-                      aria-describedby="message-description"
-                      className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
-                    />
-                  </div>
-                </div>
-                <fieldset className="sm:col-span-2">
-                  <legend className="block text-sm/6 font-semibold text-gray-900">
-                    Expected budget
-                  </legend>
-                  <div className="mt-4 space-y-4 text-sm/6 text-gray-600">
-                    {[
-                      { id: "under_25k", label: "Less than $25K" },
-                      { id: "25k-50k", label: "$25K – $50K" },
-                      { id: "50k-100k", label: "$50K – $100K" },
-                      { id: "over_100k", label: "$100K+" },
-                    ].map((option) => (
-                      <div key={option.id} className="flex gap-x-2.5">
-                        <input
-                          id={`budget-${option.id}`}
-                          name="budget"
-                          type="radio"
-                          value={option.id}
-                          checked={formData.budget === option.id}
-                          onChange={handleChange}
-                          className="relative mt-1 size-4 appearance-none rounded-full border border-gray-300 before:absolute before:inset-1 before:rounded-full before:bg-white checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden [&:not(:checked)]:before:hidden"
-                        />
-                        <label htmlFor={`budget-${option.id}`}>{option.label}</label>
-                      </div>
-                    ))}
-                  </div>
-                </fieldset>
-              </div>
-              <div className="mt-10 flex justify-end border-t border-gray-900/10 pt-8">
-                <button
-                  type="submit"
-                  disabled={status === 'loading'}
-                  className="rounded-md bg-deepteal px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-emerald-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              ))}
+            </div>
+
+            <div
+              style={{ borderTop: `1px solid ${T.border}`, paddingTop: "2rem" }}
+            >
+              <p
+                style={{
+                  ...mono,
+                  fontSize: "0.65rem",
+                  color: T.gold,
+                  letterSpacing: "0.2em",
+                  textTransform: "uppercase",
+                  marginBottom: "1rem",
+                }}
+              >
+                Connect
+              </p>
+              {[
+                {
+                  label: "LinkedIn",
+                  href: "https://linkedin.com/in/jacobroman",
+                },
+                { label: "Facebook", href: "https://facebook.com/profile.php?id=61575806189799" },
+                { label: "X", href: "https://x.com/romanforge" },
+              ].map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block no-underline mb-2"
+                  style={{
+                    ...mono,
+                    fontSize: "0.75rem",
+                    color: T.textMuted,
+                    letterSpacing: "0.05em",
+                  }}
                 >
-                  {status === "loading" ? "Sending...." : "Send message"}
-                </button>
+                  {link.label} →
+                </a>
+              ))}
+            </div>
+
+            {/* Response time note */}
+            <div
+              className="mt-8 p-4"
+              style={{ border: `1px solid ${T.border}`, background: T.bg }}
+            >
+              <p
+                style={{
+                  ...mono,
+                  fontSize: "0.65rem",
+                  color: T.gold,
+                  letterSpacing: "0.1em",
+                  marginBottom: "0.5rem",
+                }}
+              >
+                RESPONSE TIME
+              </p>
+              <p
+                style={{
+                  ...mono,
+                  fontSize: "0.72rem",
+                  color: T.textDim,
+                  lineHeight: 1.6,
+                }}
+              >
+                We respond to all inquiries within 24 hours on business days.
+              </p>
+            </div>
+          </div>
+
+          {/* Form Panel */}
+          <div
+            className="lg:col-span-2 bracket-corners"
+            style={{ border: `1px solid ${T.border}`, background: T.bgCard }}
+          >
+            <BracketFrame style={{ padding: "2.5rem md:3rem" }}>
+              <div className="p-8 md:p-10">
+                {status === "success" ? (
+                  <div className="text-center py-16">
+                    <div
+                      style={{
+                        ...cormorant,
+                        fontSize: "3rem",
+                        color: T.gold,
+                        marginBottom: "1rem",
+                      }}
+                    >
+                      ✓
+                    </div>
+                    <h3
+                      className="mb-3"
+                      style={{
+                        ...cormorant,
+                        fontSize: "2rem",
+                        fontWeight: 500,
+                        color: T.text,
+                      }}
+                    >
+                      Message Sent
+                    </h3>
+                    <p
+                      style={{
+                        ...mono,
+                        fontSize: "0.8rem",
+                        color: T.textDim,
+                        lineHeight: 1.7,
+                      }}
+                    >
+                      Thank you for reaching out. We'll be in touch within 24
+                      hours.
+                    </p>
+                    <button
+                      onClick={() => setStatus("idle")}
+                      className="mt-8 cursor-pointer"
+                      style={{
+                        ...mono,
+                        fontSize: "0.72rem",
+                        color: T.gold,
+                        background: "transparent",
+                        border: `1px solid ${T.border}`,
+                        padding: "0.6rem 1.4rem",
+                        letterSpacing: "0.05em",
+                      }}
+                    >
+                      Send Another Message
+                    </button>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit}>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+                      <div>
+                        <label htmlFor="firstName" style={labelStyle}>
+                          First Name *
+                        </label>
+                        <input
+                          id="firstName"
+                          name="firstName"
+                          type="text"
+                          required
+                          value={formData.firstName}
+                          onChange={handleChange}
+                          autoComplete="given-name"
+                          style={inputStyle}
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="lastName" style={labelStyle}>
+                          Last Name *
+                        </label>
+                        <input
+                          id="lastName"
+                          name="lastName"
+                          type="text"
+                          required
+                          value={formData.lastName}
+                          onChange={handleChange}
+                          autoComplete="family-name"
+                          style={inputStyle}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="mb-5">
+                      <label htmlFor="email" style={labelStyle}>
+                        Email *
+                      </label>
+                      <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        required
+                        value={formData.email}
+                        onChange={handleChange}
+                        autoComplete="email"
+                        style={inputStyle}
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+                      <div>
+                        <label htmlFor="company" style={labelStyle}>
+                          Company *
+                        </label>
+                        <input
+                          id="company"
+                          name="company"
+                          type="text"
+                          required
+                          value={formData.company}
+                          onChange={handleChange}
+                          autoComplete="organization"
+                          style={inputStyle}
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="phone" style={labelStyle}>
+                          Phone{" "}
+                          <span
+                            style={{
+                              color: T.textDim,
+                              textTransform: "none",
+                              fontSize: "0.6rem",
+                            }}
+                          >
+                            (optional)
+                          </span>
+                        </label>
+                        <input
+                          id="phone"
+                          name="phone"
+                          type="tel"
+                          value={formData.phone}
+                          onChange={handleChange}
+                          autoComplete="tel"
+                          style={inputStyle}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="mb-5">
+                      <label htmlFor="message" style={labelStyle}>
+                        How Can We Help? *
+                      </label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        required
+                        value={formData.message}
+                        onChange={handleChange}
+                        rows={4}
+                        maxLength={1000}
+                        style={{ ...inputStyle, resize: "vertical" }}
+                      />
+                    </div>
+
+                    {status === "error" && (
+                      <p
+                        className="mb-4"
+                        style={{
+                          ...mono,
+                          fontSize: "0.72rem",
+                          color: "#e87070",
+                          border: `1px solid rgba(232,112,112,0.3)`,
+                          padding: "0.75rem 1rem",
+                        }}
+                      >
+                        Something went wrong. Please try again or email us
+                        directly.
+                      </p>
+                    )}
+
+                    <button
+                      type="submit"
+                      disabled={status === "loading"}
+                      className="w-full cursor-pointer transition-all duration-200"
+                      style={{
+                        ...mono,
+                        fontSize: "0.78rem",
+                        fontWeight: 600,
+                        padding: "1rem 1.75rem",
+                        background:
+                          status === "loading" ? T.bgElevated : T.gold,
+                        color: status === "loading" ? T.textDim : T.bg,
+                        border: `1px solid ${T.gold}`,
+                        letterSpacing: "0.05em",
+                        cursor:
+                          status === "loading" ? "not-allowed" : "pointer",
+                      }}
+                    >
+                      {status === "loading" ? "Sending..." : "Send Message →"}
+                    </button>
+                  </form>
+                )}
               </div>
-              {status === 'success' && (
-                <p className="mt-4 text-green-600 text-sm">Thank you for your message! We'll get back to you soon.</p>
-              )}
-              {status === 'error' && (
-                <p className="mt-4 text-red-600 text-sm">Something went wrong. Please try again later.</p>)}
-            </form>
+            </BracketFrame>
           </div>
         </div>
       </div>

@@ -2,6 +2,19 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    container: {
+      padding: {
+        DEFAULT: "1rem",
+        md: "2rem",
+      },
+      screens: {
+        sm: "100%",
+        md: "100%",
+        lg: "100%",
+        xl: "1280px",
+        "2xl": "1280px",
+      },
+    },
     extend: {
       animation: {
         "gradient-shift": "gradientShift 15s ease-in-out infinite alternate",
@@ -28,9 +41,20 @@ export default {
         garamond: ["Cormorant Garamond", "serif"],
       },
       colors: {
-        sand: "#EFD7AB",
-        deepteal: "#123E3D",
-        deepblue: "#050912",
+        // Primary brand colors
+        sand: "#EFD7AB",       // gold / primary accent
+        deepteal: "#123E3D",   // teal green
+        deepblue: "#050912",   // deep navy
+        // Site backgrounds
+        "site-bg": "#0B0D0C",
+        "site-card": "#0F1211",
+        "site-elevated": "#131716",
+        // Text scale
+        "site-text": "#E8E6E3",
+        "site-muted": "#9A9895",
+        "site-dim": "#5A5855",
+        // Accent
+        "site-accent": "#D4AF37",
       },
       blur: {
         "2xl": "64px",

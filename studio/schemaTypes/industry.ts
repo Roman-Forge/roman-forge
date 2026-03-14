@@ -1,15 +1,15 @@
 import { Rule } from "sanity";
 
 export default {
-  name: "service",
-  title: "Service",
+  name: "industry",
+  title: "Industry",
   type: "document",
   fields: [
     {
-      name: "num",
-      title: "Number",
+      name: "icon",
+      title: "Icon (emoji)",
       type: "string",
-      description: 'Display number, e.g. "01"',
+      description: "Emoji icon, e.g. ⚖ or 🏥",
       validation: (Rule: Rule) => Rule.required(),
     },
     {
@@ -19,29 +19,10 @@ export default {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
-      name: "slug",
-      title: "Slug",
-      type: "slug",
-      options: { source: "title", maxLength: 96 },
-      validation: (Rule: Rule) => Rule.required(),
-    },
-    {
-      name: "iconName",
-      title: "Icon Name",
-      type: "string",
-      description: 'Lucide icon name, e.g. "MessageSquare"',
-    },
-    {
       name: "description",
       title: "Description",
       type: "text",
       validation: (Rule: Rule) => Rule.required(),
-    },
-    {
-      name: "price",
-      title: "Price String",
-      type: "string",
-      description: 'e.g. "FROM $8,000 · 4–6 WEEKS"',
     },
     {
       name: "order",

@@ -1,8 +1,8 @@
 import { Rule } from "sanity";
 
 export default {
-  name: "service",
-  title: "Service",
+  name: "processStep",
+  title: "Process Step",
   type: "document",
   fields: [
     {
@@ -19,29 +19,16 @@ export default {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
-      name: "slug",
-      title: "Slug",
-      type: "slug",
-      options: { source: "title", maxLength: 96 },
-      validation: (Rule: Rule) => Rule.required(),
-    },
-    {
-      name: "iconName",
-      title: "Icon Name",
-      type: "string",
-      description: 'Lucide icon name, e.g. "MessageSquare"',
-    },
-    {
       name: "description",
       title: "Description",
       type: "text",
       validation: (Rule: Rule) => Rule.required(),
     },
     {
-      name: "price",
-      title: "Price String",
+      name: "timeline",
+      title: "Timeline",
       type: "string",
-      description: 'e.g. "FROM $8,000 · 4–6 WEEKS"',
+      description: 'e.g. "Week 1" or "Weeks 3–6"',
     },
     {
       name: "order",

@@ -1,4 +1,3 @@
-import { scan } from 'react-scan';
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { PostHogProvider } from "posthog-js/react";
@@ -13,6 +12,7 @@ import Index from "./routes/index";
 import About from "./routes/about";
 import Layout from "./components/Layout";
 import Services from "./routes/services";
+import { ThemeProvider } from "./lib/theme";
 
 import "./index.css";
 import Contact from "./routes/contact";
@@ -84,8 +84,10 @@ declare module "@tanstack/react-router" {
 }
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <PostHogProvider apiKey={apiKey} options={options}>
-      <RouterProvider router={router} />
-    </PostHogProvider>
+    <ThemeProvider>
+      <PostHogProvider apiKey={apiKey} options={options}>
+        <RouterProvider router={router} />
+      </PostHogProvider>
+    </ThemeProvider>
   </StrictMode>,
 );
