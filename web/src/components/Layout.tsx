@@ -109,15 +109,35 @@ export default function Layout() {
                     </Link>
                   </span>
                 ))}
-                <Link
-                  to="/contact"
-                  className="ml-6 no-underline transition-all duration-200 inline-block"
+                <button
+                  onClick={() =>
+                    (window as any).Calendly?.initPopupWidget({
+                      url: "https://calendly.com/jacobroman1115/30min",
+                    })
+                  }
+                  className="ml-6 cursor-pointer transition-all duration-200 inline-block"
                   style={{
                     ...mono,
                     fontSize: "0.75rem",
                     fontWeight: 600,
                     color: T.bg,
                     background: T.gold,
+                    border: `1px solid ${T.gold}`,
+                    padding: "0.6rem 1.4rem",
+                    letterSpacing: "0.05em",
+                  }}
+                >
+                  Book a Call
+                </button>
+                <Link
+                  to="/contact"
+                  className="ml-3 no-underline transition-all duration-200 inline-block"
+                  style={{
+                    ...mono,
+                    fontSize: "0.75rem",
+                    fontWeight: 600,
+                    color: T.gold,
+                    background: "transparent",
                     border: `1px solid ${T.gold}`,
                     padding: "0.6rem 1.4rem",
                     letterSpacing: "0.05em",
@@ -179,6 +199,18 @@ export default function Layout() {
                     {label}
                   </Link>
                 ))}
+                <button
+                  onClick={() => {
+                    setMenuOpen(false);
+                    (window as any).Calendly?.initPopupWidget({
+                      url: "https://calendly.com/jacobroman1115/30min",
+                    });
+                  }}
+                  className="cursor-pointer text-left py-2 bg-transparent"
+                  style={{ ...mono, fontSize: "0.8rem", color: T.gold, border: "none", padding: "0.5rem 0" }}
+                >
+                  Book a Call
+                </button>
               </div>
             )}
           </BracketFrame>
