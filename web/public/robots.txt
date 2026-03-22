@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://romanforge.com/sitemap.xml
+Sitemap: https://romanforge.dev/sitemap.xml
