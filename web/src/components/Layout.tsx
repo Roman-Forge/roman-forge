@@ -64,7 +64,7 @@ export default function Layout() {
                 onClick={() => setMenuOpen(false)}
               >
                 <img
-                  src={theme === "dark" ? "/new-logo.png" : "/roman-forge.png"}
+                  src={theme === "dark" ? "/new-logo.png" : "/roman-forge-green.svg"}
                   alt="Roman Forge"
                   width={126}
                 />
