@@ -39,7 +39,7 @@ export const PAGE_SEO: Record<string, { title: string; description: string }> = 
   "/contact": {
     title: "Book an AI Assessment | Roman Forge",
     description:
-      "Tell Roman Forge where work piles up. Book a free 30-minute assessment and leave with a practical plan for AI in your operations. Lansing, Michigan.",
+      "Book a free 30-minute AI assessment, or send a question and get a reply within one business day. Roman Forge is based in Lansing, MI.",
   },
 };
 

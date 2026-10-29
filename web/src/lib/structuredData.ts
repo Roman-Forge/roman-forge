@@ -1,9 +1,10 @@
+import { CONTACT_EMAIL, CONTACT_PHONE_E164 } from "./siteContact";
+
 /**
  * Schema.org graph for Roman Forge.
- * Every value is already published on the site: Lansing, Michigan; the
- * jacob@romanforge.dev mailto; (810) 692-0143; and the LinkedIn, Facebook,
- * and X links in the footer and contact page. No street address is published,
- * so none is included.
+ * Phone, email, and locality come from siteContact.ts — the same values the
+ * footer and /contact publish. No street address is published, so none is
+ * included.
  *
  * ProfessionalService is a LocalBusiness, which is an Organization, so those
  * three types share one entity instead of three copies of the same business.
@@ -20,8 +21,8 @@ export const structuredData = {
         "AI integration architecture for modern business. Production-grade AI systems, intelligent automation, and knowledge infrastructure for companies of 10–250 people.",
       image: "https://romanforge.dev/roman-forge-social.png",
       logo: "https://romanforge.dev/new-logo.png",
-      telephone: "+1-810-692-0143",
-      email: "jacob@romanforge.dev",
+      telephone: CONTACT_PHONE_E164,
+      email: CONTACT_EMAIL,
       foundingDate: "2025",
       address: {
         "@type": "PostalAddress",
@@ -47,8 +48,8 @@ export const structuredData = {
       jobTitle: "Founder",
       url: "https://romanforge.dev/about",
       image: "https://romanforge.dev/roman-portrait.jpg",
-      email: "jacob@romanforge.dev",
-      telephone: "+1-810-692-0143",
+      email: CONTACT_EMAIL,
+      telephone: CONTACT_PHONE_E164,
       worksFor: { "@id": "https://romanforge.dev/#organization" },
       sameAs: ["https://linkedin.com/in/jacobroman"],
     },

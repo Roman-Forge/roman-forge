@@ -1,8 +1,7 @@
 import { T, mono, cormorant, SectionHeader, Reveal, Divider, BracketFrame } from "../components/design";
 import { useSanity } from "../components/SanityProvider";
 import type { ProcessStep } from "../lib/sanity";
-import { Link } from "@tanstack/react-router";
-import { ChevronRight } from "lucide-react";
+import AssessmentCta from "../components/AssessmentCta";
 
 const FALLBACK_STEPS: ProcessStep[] = [
   { _id: "s1", num: "01", title: "Discovery", description: "Requirements gathering, system architecture planning, and ROI analysis. We identify where AI creates the most value.", timeline: "Week 1", order: 1 },
@@ -122,13 +121,7 @@ export default function ProcessPage() {
           <p className="relative z-10 max-w-[480px] mx-auto mb-8" style={{ ...mono, fontSize: "0.8rem", color: T.textMuted, lineHeight: 1.7 }}>
             Book a free strategy assessment and get a detailed implementation roadmap within one week.
           </p>
-          <Link
-            to="/contact"
-            className="no-underline relative z-10 inline-flex items-center gap-2"
-            style={{ ...mono, fontSize: "0.78rem", fontWeight: 500, padding: "0.85rem 1.75rem", background: T.gold, color: T.bg, border: `1px solid ${T.gold}`, letterSpacing: "0.03em" }}
-          >
-            Book a Consultation <ChevronRight size={14} />
-          </Link>
+          <AssessmentCta align="center" className="relative z-10" />
         </BracketFrame>
       </div>
     </div>

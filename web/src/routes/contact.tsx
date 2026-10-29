@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
+import { useRouterState } from "@tanstack/react-router";
 import {
   T,
   mono,
@@ -7,64 +8,109 @@ import {
   BracketFrame,
   SectionHeader,
 } from "../components/design";
+import AssessmentCta from "../components/AssessmentCta";
+import {
+  CONTACT_EMAIL,
+  CONTACT_LOCATION,
+  CONTACT_PHONE_DISPLAY,
+  CONTACT_PHONE_HREF,
+  REPLY_PROMISE,
+  validateQuestion,
+  type QuestionErrors,
+  type QuestionField,
+  type QuestionInput,
+} from "../lib/siteContact";
+
+const EMPTY: QuestionInput = { name: "", business: "", email: "", hope: "" };
+
+const FIELDS: { name: QuestionField; label: string; autoComplete: string; multiline?: boolean }[] = [
+  { name: "name", label: "Name", autoComplete: "name" },
+  { name: "business", label: "Business", autoComplete: "organization" },
+  { name: "email", label: "Email", autoComplete: "email" },
+  {
+    name: "hope",
+    label: "What do you hope AI can help with?",
+    autoComplete: "off",
+    multiline: true,
+  },
+];
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    company: "",
-    phone: "",
-    message: "",
-  });
-  const [status, setStatus] = useState<
-    "idle" | "loading" | "success" | "error"
-  >("idle");
+  const [formData, setFormData] = useState<QuestionInput>(EMPTY);
+  const [errors, setErrors] = useState<QuestionErrors>({});
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const errorRef = useRef<HTMLParagraphElement>(null);
+  const formId = useId();
+  const hash = useRouterState({ select: (state) => state.location.hash });
+
+  useEffect(() => {
+    const normalized = hash.replace(/^#/, "");
+    if (normalized !== "question") return;
+    const el = document.getElementById("question");
+    if (!el) return;
+    el.scrollIntoView({ block: "start" });
+    if (el instanceof HTMLElement) el.focus({ preventScroll: true });
+  }, [hash]);
+
+  useEffect(() => {
+    if (status === "success") headingRef.current?.focus();
+    if (status === "error") errorRef.current?.focus();
+  }, [status]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const result = validateQuestion(formData);
+    setErrors(result.errors);
+    if (!result.ok) {
+      setStatus("idle");
+      const first = FIELDS.find((field) => result.errors[field.name]);
+      if (first) document.getElementById(`${formId}-${first.name}`)?.focus();
+      return;
+    }
+
     setStatus("loading");
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(result.value),
       });
-      const data = await response.json();
-      if (!response.ok)
-        throw new Error(data.details || data.error || "Failed to send message");
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok || !data.success) {
+        if (data.fields && typeof data.fields === "object") setErrors(data.fields);
+        throw new Error("send failed");
+      }
       setStatus("success");
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        company: "",
-        phone: "",
-        message: "",
-      });
+      setFormData(EMPTY);
+      setErrors({});
     } catch {
       setStatus("error");
     }
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => {
+      if (!prev[name as QuestionField]) return prev;
+      const next = { ...prev };
+      delete next[name as QuestionField];
+      return next;
+    });
   };
 
-  const inputStyle: React.CSSProperties = {
+  const inputStyle = (invalid: boolean): React.CSSProperties => ({
     ...mono,
     fontSize: "0.8rem",
     width: "100%",
     background: T.bg,
-    border: `1px solid ${T.border}`,
+    border: `1px solid ${invalid ? "#e87070" : T.border}`,
     color: T.text,
     padding: "0.75rem 1rem",
     outline: "none",
     letterSpacing: "0.02em",
-  };
+  });
 
   const labelStyle: React.CSSProperties = {
     ...mono,
@@ -76,28 +122,27 @@ export default function ContactPage() {
     marginBottom: "0.5rem",
   };
 
+  const hasFieldErrors = Object.keys(errors).length > 0;
+
   return (
     <div>
-      {/* ══════ PAGE HERO ══════ */}
       <div className="container mx-auto mt-2 py-20">
         <SectionHeader
           as="h1"
           tag="Get In Touch"
           title="Let's forge your AI infrastructure"
-          desc="Schedule a free 30-minute assessment. We'll identify 3–5 AI opportunities in your business, provide estimates, and give you a clear path forward."
+          desc="Tell us where work piles up. The assessment is free and takes 30 minutes. If a call is too soon, send a question instead."
         />
+        <AssessmentCta questionHref="#question" />
       </div>
 
-      {/* ══════ FORM + INFO ══════ */}
       <div className="container mx-auto pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
-          {/* Contact Info Panel */}
           <div
             className="p-8 lg:p-10 bracket-corners"
             style={{
               border: `1px solid ${T.border}`,
               background: T.bgCard,
-              borderRight: "none",
             }}
           >
             <div className="mb-8">
@@ -116,17 +161,17 @@ export default function ContactPage() {
               {[
                 {
                   label: "Email",
-                  value: "jacob@romanforge.dev",
-                  href: "mailto:jacob@romanforge.dev",
+                  value: CONTACT_EMAIL,
+                  href: `mailto:${CONTACT_EMAIL}`,
                 },
                 {
                   label: "Phone",
-                  value: "(810) 692-0143",
-                  href: "tel:810-692-0143",
+                  value: CONTACT_PHONE_DISPLAY,
+                  href: CONTACT_PHONE_HREF,
                 },
                 {
                   label: "Location",
-                  value: "Lansing, Michigan",
+                  value: CONTACT_LOCATION,
                   href: undefined,
                 },
               ].map((item) => (
@@ -146,23 +191,19 @@ export default function ContactPage() {
                   {item.href ? (
                     <a
                       href={item.href}
-                      className="no-underline"
+                      className="no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                       style={{ ...dm, fontSize: "0.85rem", color: T.text }}
                     >
                       {item.value}
                     </a>
                   ) : (
-                    <p style={{ ...dm, fontSize: "0.85rem", color: T.text }}>
-                      {item.value}
-                    </p>
+                    <p style={{ ...dm, fontSize: "0.85rem", color: T.text }}>{item.value}</p>
                   )}
                 </div>
               ))}
             </div>
 
-            <div
-              style={{ borderTop: `1px solid ${T.border}`, paddingTop: "2rem" }}
-            >
+            <div style={{ borderTop: `1px solid ${T.border}`, paddingTop: "2rem" }}>
               <p
                 style={{
                   ...mono,
@@ -176,10 +217,7 @@ export default function ContactPage() {
                 Connect
               </p>
               {[
-                {
-                  label: "LinkedIn",
-                  href: "https://linkedin.com/in/jacobroman",
-                },
+                { label: "LinkedIn", href: "https://linkedin.com/in/jacobroman" },
                 { label: "Facebook", href: "https://facebook.com/profile.php?id=61575806189799" },
                 { label: "X", href: "https://x.com/romanforge" },
               ].map((link) => (
@@ -188,7 +226,7 @@ export default function ContactPage() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block no-underline mb-2"
+                  className="block no-underline mb-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                   style={{
                     ...mono,
                     fontSize: "0.75rem",
@@ -201,11 +239,7 @@ export default function ContactPage() {
               ))}
             </div>
 
-            {/* Response time note */}
-            <div
-              className="mt-8 p-4"
-              style={{ border: `1px solid ${T.border}`, background: T.bg }}
-            >
+            <div className="mt-8 p-4" style={{ border: `1px solid ${T.border}`, background: T.bg }}>
               <p
                 style={{
                   ...mono,
@@ -217,25 +251,17 @@ export default function ContactPage() {
               >
                 RESPONSE TIME
               </p>
-              <p
-                style={{
-                  ...mono,
-                  fontSize: "0.72rem",
-                  color: T.textDim,
-                  lineHeight: 1.6,
-                }}
-              >
-                We respond to all inquiries within 24 hours on business days.
+              <p style={{ ...mono, fontSize: "0.72rem", color: T.textDim, lineHeight: 1.6 }}>
+                {REPLY_PROMISE}
               </p>
             </div>
           </div>
 
-          {/* Form Panel */}
           <div
             className="lg:col-span-2 bracket-corners"
             style={{ border: `1px solid ${T.border}`, background: T.bgCard }}
           >
-            <BracketFrame style={{ padding: "2.5rem md:3rem" }}>
+            <BracketFrame>
               <div className="p-8 md:p-10">
                 {status === "success" ? (
                   <div className="text-center py-16">
@@ -246,11 +272,14 @@ export default function ContactPage() {
                         color: T.gold,
                         marginBottom: "1rem",
                       }}
+                      aria-hidden="true"
                     >
                       ✓
                     </div>
-                    <h3
-                      className="mb-3"
+                    <h2
+                      ref={headingRef}
+                      tabIndex={-1}
+                      className="mb-3 focus:outline focus:outline-2 focus:outline-offset-4"
                       style={{
                         ...cormorant,
                         fontSize: "2rem",
@@ -258,9 +287,10 @@ export default function ContactPage() {
                         color: T.text,
                       }}
                     >
-                      Message Sent
-                    </h3>
+                      Question sent
+                    </h2>
                     <p
+                      role="status"
                       style={{
                         ...mono,
                         fontSize: "0.8rem",
@@ -268,12 +298,12 @@ export default function ContactPage() {
                         lineHeight: 1.7,
                       }}
                     >
-                      Thank you for reaching out. We'll be in touch within 24
-                      hours.
+                      Thank you. {REPLY_PROMISE}
                     </p>
                     <button
+                      type="button"
                       onClick={() => setStatus("idle")}
-                      className="mt-8 cursor-pointer"
+                      className="mt-8 cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                       style={{
                         ...mono,
                         fontSize: "0.72rem",
@@ -284,152 +314,157 @@ export default function ContactPage() {
                         letterSpacing: "0.05em",
                       }}
                     >
-                      Send Another Message
+                      Send another question
                     </button>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit}>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
-                      <div>
-                        <label htmlFor="firstName" style={labelStyle}>
-                          First Name *
-                        </label>
-                        <input
-                          id="firstName"
-                          name="firstName"
-                          type="text"
-                          required
-                          value={formData.firstName}
-                          onChange={handleChange}
-                          autoComplete="given-name"
-                          style={inputStyle}
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="lastName" style={labelStyle}>
-                          Last Name *
-                        </label>
-                        <input
-                          id="lastName"
-                          name="lastName"
-                          type="text"
-                          required
-                          value={formData.lastName}
-                          onChange={handleChange}
-                          autoComplete="family-name"
-                          style={inputStyle}
-                        />
-                      </div>
-                    </div>
+                  <form id="question-form" onSubmit={handleSubmit} noValidate>
+                    <h2
+                      id="question"
+                      ref={headingRef}
+                      tabIndex={-1}
+                      className="mb-3 focus:outline focus:outline-2 focus:outline-offset-4"
+                      style={{
+                        ...cormorant,
+                        fontSize: "2rem",
+                        fontWeight: 500,
+                        color: T.text,
+                        scrollMarginTop: "2rem",
+                      }}
+                    >
+                      Send a quick question
+                    </h2>
+                    <p
+                      className="mb-8"
+                      style={{ ...mono, fontSize: "0.75rem", color: T.textMuted, lineHeight: 1.7 }}
+                    >
+                      All four fields are required. {REPLY_PROMISE}
+                    </p>
 
-                    <div className="mb-5">
-                      <label htmlFor="email" style={labelStyle}>
-                        Email *
-                      </label>
-                      <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        required
-                        value={formData.email}
-                        onChange={handleChange}
-                        autoComplete="email"
-                        style={inputStyle}
-                      />
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
-                      <div>
-                        <label htmlFor="company" style={labelStyle}>
-                          Company *
-                        </label>
-                        <input
-                          id="company"
-                          name="company"
-                          type="text"
-                          required
-                          value={formData.company}
-                          onChange={handleChange}
-                          autoComplete="organization"
-                          style={inputStyle}
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="phone" style={labelStyle}>
-                          Phone{" "}
-                          <span
-                            style={{
-                              color: T.textDim,
-                              textTransform: "none",
-                              fontSize: "0.6rem",
-                            }}
-                          >
-                            (optional)
-                          </span>
-                        </label>
-                        <input
-                          id="phone"
-                          name="phone"
-                          type="tel"
-                          value={formData.phone}
-                          onChange={handleChange}
-                          autoComplete="tel"
-                          style={inputStyle}
-                        />
-                      </div>
-                    </div>
-
-                    <div className="mb-5">
-                      <label htmlFor="message" style={labelStyle}>
-                        How Can We Help? *
-                      </label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        required
-                        value={formData.message}
-                        onChange={handleChange}
-                        rows={4}
-                        maxLength={1000}
-                        style={{ ...inputStyle, resize: "vertical" }}
-                      />
-                    </div>
-
-                    {status === "error" && (
+                    {hasFieldErrors && (
                       <p
-                        className="mb-4"
+                        role="alert"
+                        className="mb-5"
                         style={{
                           ...mono,
                           fontSize: "0.72rem",
                           color: "#e87070",
-                          border: `1px solid rgba(232,112,112,0.3)`,
+                          border: "1px solid rgba(232,112,112,0.3)",
                           padding: "0.75rem 1rem",
                         }}
                       >
-                        Something went wrong. Please try again or email us
-                        directly.
+                        Please fix the fields below before sending.
+                      </p>
+                    )}
+
+                    <div className="grid grid-cols-1 gap-5 mb-5">
+                      {FIELDS.map((field) => {
+                        const id = `${formId}-${field.name}`;
+                        const errorId = `${id}-error`;
+                        const invalid = Boolean(errors[field.name]);
+                        const describedBy = invalid ? errorId : undefined;
+                        return (
+                          <div key={field.name}>
+                            <label htmlFor={id} style={labelStyle}>
+                              {field.label}{" "}
+                              <span className="sr-only">(required)</span>
+                              <span aria-hidden="true">*</span>
+                            </label>
+                            {field.multiline ? (
+                              <textarea
+                                id={id}
+                                name={field.name}
+                                required
+                                aria-required="true"
+                                aria-invalid={invalid}
+                                aria-describedby={describedBy}
+                                value={formData[field.name]}
+                                onChange={handleChange}
+                                rows={5}
+                                maxLength={2000}
+                                autoComplete={field.autoComplete}
+                                className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                                style={{ ...inputStyle(invalid), resize: "vertical" }}
+                              />
+                            ) : (
+                              <input
+                                id={id}
+                                name={field.name}
+                                type={field.name === "email" ? "email" : "text"}
+                                required
+                                aria-required="true"
+                                aria-invalid={invalid}
+                                aria-describedby={describedBy}
+                                value={formData[field.name]}
+                                onChange={handleChange}
+                                autoComplete={field.autoComplete}
+                                maxLength={field.name === "name" ? 120 : field.name === "business" ? 160 : 254}
+                                className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                                style={inputStyle(invalid)}
+                              />
+                            )}
+                            {invalid && (
+                              <p
+                                id={errorId}
+                                style={{
+                                  ...mono,
+                                  fontSize: "0.68rem",
+                                  color: "#e87070",
+                                  marginTop: "0.4rem",
+                                }}
+                              >
+                                {errors[field.name]}
+                              </p>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    {status === "error" && (
+                      <p
+                        ref={errorRef}
+                        tabIndex={-1}
+                        role="alert"
+                        className="mb-4 focus:outline focus:outline-2 focus:outline-offset-2"
+                        style={{
+                          ...mono,
+                          fontSize: "0.72rem",
+                          color: "#e87070",
+                          border: "1px solid rgba(232,112,112,0.3)",
+                          padding: "0.75rem 1rem",
+                        }}
+                      >
+                        We couldn't send your question. Please try again, or email{" "}
+                        <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: "#e87070" }}>
+                          {CONTACT_EMAIL}
+                        </a>{" "}
+                        or call{" "}
+                        <a href={CONTACT_PHONE_HREF} style={{ color: "#e87070" }}>
+                          {CONTACT_PHONE_DISPLAY}
+                        </a>
+                        .
                       </p>
                     )}
 
                     <button
                       type="submit"
                       disabled={status === "loading"}
-                      className="w-full cursor-pointer transition-all duration-200"
+                      aria-busy={status === "loading"}
+                      className="w-full cursor-pointer transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                       style={{
                         ...mono,
                         fontSize: "0.78rem",
                         fontWeight: 600,
                         padding: "1rem 1.75rem",
-                        background:
-                          status === "loading" ? T.bgElevated : T.gold,
+                        background: status === "loading" ? T.bgElevated : T.gold,
                         color: status === "loading" ? T.textDim : T.bg,
                         border: `1px solid ${T.gold}`,
                         letterSpacing: "0.05em",
-                        cursor:
-                          status === "loading" ? "not-allowed" : "pointer",
+                        cursor: status === "loading" ? "not-allowed" : "pointer",
                       }}
                     >
-                      {status === "loading" ? "Sending..." : "Send Message →"}
+                      {status === "loading" ? "Sending..." : "Send your question"}
                     </button>
                   </form>
                 )}
