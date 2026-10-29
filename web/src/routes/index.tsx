@@ -22,6 +22,7 @@ import {
   Divider,
 } from "../components/design";
 import { useSanity } from "../components/SanityProvider";
+import AssessmentCta from "../components/AssessmentCta";
 
 /* ── Fallback services (shown while Sanity loads or if empty) ── */
 const FALLBACK_SERVICES = [
@@ -114,23 +115,8 @@ export default function HomePage() {
               <strong className="font-semibold" style={{ color: T.text }}>knowledge infrastructure</strong> that
               replace months of manual operations and engineering.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Link
-                to="/contact"
-                className="no-underline inline-flex items-center gap-2 transition-all duration-200"
-                style={{
-                  ...mono,
-                  fontSize: "0.78rem",
-                  fontWeight: 500,
-                  padding: "0.85rem 1.75rem",
-                  background: T.gold,
-                  color: T.bg,
-                  border: `1px solid ${T.gold}`,
-                  letterSpacing: "0.03em",
-                }}
-              >
-                Book a Consultation <ChevronRight size={14} />
-              </Link>
+            <div className="flex flex-col sm:flex-row gap-4 sm:items-start">
+              <AssessmentCta />
               <Link
                 to="/services"
                 className="no-underline inline-flex items-center gap-2 transition-all duration-200"
@@ -341,23 +327,8 @@ export default function HomePage() {
             Schedule a free 30-minute assessment. We'll identify 3–5 AI opportunities in your
             business, provide estimates, and give you a clear path forward.
           </p>
-          <div className="relative z-10 flex flex-col sm:flex-row gap-3 justify-center">
-            <Link
-              to="/contact"
-              className="no-underline inline-flex items-center justify-center gap-2 transition-all duration-200"
-              style={{
-                ...mono,
-                fontSize: "0.78rem",
-                fontWeight: 500,
-                padding: "0.85rem 1.75rem",
-                background: T.gold,
-                color: T.bg,
-                border: `1px solid ${T.gold}`,
-                letterSpacing: "0.03em",
-              }}
-            >
-              Schedule Consultation <ChevronRight size={14} />
-            </Link>
+          <div className="relative z-10 flex flex-col items-center gap-4">
+            <AssessmentCta align="center" />
             <a
               href="https://linkedin.com/in/jacobroman"
               target="_blank"

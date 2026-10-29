@@ -1,5 +1,4 @@
-import { Link } from "@tanstack/react-router";
-import { ChevronRight, MessageSquare, LayoutDashboard, Shuffle, FileText, Search, Layers } from "lucide-react";
+import { MessageSquare, LayoutDashboard, Shuffle, FileText, Search, Layers } from "lucide-react";
 import {
   T,
   mono,
@@ -11,6 +10,7 @@ import {
   BracketFrame,
 } from "../components/design";
 import { useSanity } from "../components/SanityProvider";
+import AssessmentCta from "../components/AssessmentCta";
 import type { FAQItem, Industry, Service } from "../lib/sanity";
 
 const ICON_MAP: Record<string, React.ElementType> = {
@@ -166,13 +166,7 @@ export default function ServicesPage() {
           <p className="relative z-10 max-w-[480px] mx-auto mb-8" style={{ ...mono, fontSize: "0.8rem", color: T.textMuted, lineHeight: 1.7 }}>
             Schedule a free 30-minute assessment and get a clear AI implementation roadmap.
           </p>
-          <Link
-            to="/contact"
-            className="no-underline relative z-10 inline-flex items-center gap-2"
-            style={{ ...mono, fontSize: "0.78rem", fontWeight: 500, padding: "0.85rem 1.75rem", background: T.gold, color: T.bg, border: `1px solid ${T.gold}`, letterSpacing: "0.03em" }}
-          >
-            Book a Consultation <ChevronRight size={14} />
-          </Link>
+          <AssessmentCta align="center" className="relative z-10" />
         </BracketFrame>
       </div>
     </div>
