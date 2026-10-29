@@ -81,6 +81,7 @@ export default function ContactPage() {
       {/* ══════ PAGE HERO ══════ */}
       <div className="container mx-auto mt-2 py-20">
         <SectionHeader
+          as="h1"
           tag="Get In Touch"
           title="Let's forge your AI infrastructure"
           desc="Schedule a free 30-minute assessment. We'll identify 3–5 AI opportunities in your business, provide estimates, and give you a clear path forward."

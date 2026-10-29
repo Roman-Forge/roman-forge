@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ChevronRight, MessageSquare, LayoutDashboard, Shuffle, FileText, Search, Layers } from "lucide-react";
 import {
@@ -11,14 +10,8 @@ import {
   Divider,
   BracketFrame,
 } from "../components/design";
-import {
-  getServices,
-  getIndustries,
-  getFAQ,
-  type Service,
-  type Industry,
-  type FAQItem,
-} from "../lib/sanity";
+import { useSanity } from "../components/SanityProvider";
+import type { FAQItem, Industry, Service } from "../lib/sanity";
 
 const ICON_MAP: Record<string, React.ElementType> = {
   MessageSquare,
@@ -64,15 +57,7 @@ const TECH = [
 ];
 
 export default function ServicesPage() {
-  const [services, setServices] = useState<Service[]>([]);
-  const [industries, setIndustries] = useState<Industry[]>([]);
-  const [faq, setFaq] = useState<FAQItem[]>([]);
-
-  useEffect(() => {
-    getServices().then((d) => { if (d?.length) setServices(d); });
-    getIndustries().then((d) => { if (d?.length) setIndustries(d); });
-    getFAQ().then((d) => { if (d?.length) setFaq(d); });
-  }, []);
+  const { services, industries, faq } = useSanity();
 
   const displayServices = services.length ? services : FALLBACK_SERVICES;
   const displayIndustries = industries.length ? industries : FALLBACK_INDUSTRIES;
@@ -83,6 +68,7 @@ export default function ServicesPage() {
       {/* ══════ PAGE HERO ══════ */}
       <div className="container mx-auto mt-2 py-20">
         <SectionHeader
+          as="h1"
           center
           tag="Core Capabilities"
           title="What We Build"

@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import {
   ChevronRight,
@@ -22,7 +21,7 @@ import {
   IconBox,
   Divider,
 } from "../components/design";
-import { getServices, type Service } from "../lib/sanity";
+import { useSanity } from "../components/SanityProvider";
 
 /* ── Fallback services (shown while Sanity loads or if empty) ── */
 const FALLBACK_SERVICES = [
@@ -75,15 +74,8 @@ const TRUST = [
 ];
 
 export default function HomePage() {
-  const [services, setServices] = useState<Service[]>([]);
-
-  useEffect(() => {
-    getServices().then((data) => {
-      if (data && data.length > 0) setServices(data.slice(0, 3));
-    });
-  }, []);
-
-  const preview = services.length > 0 ? services : FALLBACK_SERVICES;
+  const { services } = useSanity();
+  const preview = (services.length > 0 ? services : FALLBACK_SERVICES).slice(0, 3);
 
   return (
     <div>

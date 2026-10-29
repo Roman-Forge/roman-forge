@@ -1,26 +1,20 @@
-import { useEffect, useState } from "react";
 import { T, mono, cormorant, dm, SectionHeader, Reveal } from "../components/design";
-import { getBlogPosts, type Post } from "../lib/sanity";
+import { useSanity } from "../components/SanityProvider";
 
 function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
 }
 
 export default function BlogPage() {
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    getBlogPosts()
-      .then((data) => setPosts(data ?? []))
-      .finally(() => setLoading(false));
-  }, []);
+  const { posts, ready } = useSanity();
+  const loading = !ready;
 
   return (
     <div>
       {/* ══════ PAGE HERO ══════ */}
       <div className="container mx-auto mt-2 py-20">
         <SectionHeader
+          as="h1"
           tag="Insights"
           title="The Forge Journal"
           desc="Practical AI implementation guides, case studies, and engineering insights from the Roman Forge team."

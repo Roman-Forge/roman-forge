@@ -13,6 +13,7 @@ export default function AboutPage() {
       {/* ══════ PAGE HERO ══════ */}
       <div className="container mx-auto mt-2 py-20">
         <SectionHeader
+          as="h1"
           tag="Who We Are"
           title="Classical craftsmanship meets cutting-edge AI"
           desc="Built on a belief that software infrastructure should stand the test of time — just as Roman engineering stood for millennia through precision and quality materials."

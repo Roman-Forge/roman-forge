@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useCallback } from "react";
 
 /* ═══════════════════════════════════════════
    BRAND TOKENS (CSS custom-property backed)
@@ -71,26 +71,10 @@ export function BracketFrame({
 }
 
 /* ═══════════════════════════════════════════
-   SCROLL REVEAL HOOK
+   SCROLL REVEAL
+   CSS animation so the text is in the pre-rendered HTML and still
+   visible when JavaScript has not run.
 ═══════════════════════════════════════════ */
-export function useReveal(): [React.RefObject<HTMLDivElement>, boolean] {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) setVisible(true);
-      },
-      { threshold: 0.08, rootMargin: "0px 0px -30px 0px" }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-  return [ref, visible];
-}
-
 export function Reveal({
   children,
   className = "",
@@ -100,16 +84,10 @@ export function Reveal({
   className?: string;
   delay?: number;
 }) {
-  const [ref, visible] = useReveal();
   return (
     <div
-      ref={ref}
-      className={`h-full ${className}`}
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(16px)",
-        transition: `opacity 0.5s ease ${delay}ms, transform 0.5s ease ${delay}ms`,
-      }}
+      className={`rf-reveal h-full ${className}`}
+      style={delay ? { animationDelay: `${delay}ms` } : undefined}
     >
       {children}
     </div>
@@ -124,12 +102,15 @@ export function SectionHeader({
   title,
   desc,
   center = false,
+  as,
 }: {
   tag: string;
   title: string;
   desc?: string;
   center?: boolean;
+  as?: "h1" | "h2";
 }) {
+  const Heading = as ?? "h2";
   return (
     <div className={center ? "text-center mb-14" : "mb-10"}>
       <div
@@ -139,12 +120,12 @@ export function SectionHeader({
         <span className="w-6 h-px" style={{ background: T.gold }} />
         {tag}
       </div>
-      <h2
+      <Heading
         className={`text-5xl font-medium leading-tight mb-4 tracking-tight ${center ? "max-w-[650px] mx-auto" : ""}`}
         style={{ ...cormorant, color: T.text }}
       >
         {title}
-      </h2>
+      </Heading>
       {desc && (
         <p
           className={`text-[0.8rem] leading-relaxed max-w-[700px] ${center ? "mx-auto" : ""}`}
@@ -173,7 +154,10 @@ export function Divider() {
 ═══════════════════════════════════════════ */
 
 function getGoldRgb(): [number, number, number] {
+  const fallback: [number, number, number] = [239, 215, 171];
+  if (typeof document === "undefined") return fallback;
   const hex = getComputedStyle(document.documentElement).getPropertyValue("--gold").trim();
+  if (!/^#[0-9a-fA-F]{6}$/.test(hex)) return fallback;
   return [
     parseInt(hex.slice(1, 3), 16),
     parseInt(hex.slice(3, 5), 16),

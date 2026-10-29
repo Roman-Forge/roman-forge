@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
 import { T, mono, cormorant, SectionHeader, Reveal, Divider, BracketFrame } from "../components/design";
-import { getProcessSteps, type ProcessStep } from "../lib/sanity";
+import { useSanity } from "../components/SanityProvider";
+import type { ProcessStep } from "../lib/sanity";
 import { Link } from "@tanstack/react-router";
 import { ChevronRight } from "lucide-react";
 
@@ -12,19 +12,15 @@ const FALLBACK_STEPS: ProcessStep[] = [
 ];
 
 export default function ProcessPage() {
-  const [steps, setSteps] = useState<ProcessStep[]>([]);
-
-  useEffect(() => {
-    getProcessSteps().then((d) => { if (d?.length) setSteps(d); });
-  }, []);
-
-  const displaySteps = steps.length ? steps : FALLBACK_STEPS;
+  const { processSteps } = useSanity();
+  const displaySteps = processSteps.length ? processSteps : FALLBACK_STEPS;
 
   return (
     <div>
       {/* ══════ PAGE HERO ══════ */}
       <div className="container mx-auto mt-2 py-20">
         <SectionHeader
+          as="h1"
           center
           tag="Deployment Pipeline"
           title="From Concept to Production"

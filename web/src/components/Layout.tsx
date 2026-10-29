@@ -1,14 +1,12 @@
-import { useState } from "react";
-import { Link, Outlet } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { Link, Outlet, useRouterState } from "@tanstack/react-router";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { T, mono, dm, BracketFrame } from "./design";
 import { useThemeToggle } from "../lib/theme";
+import { useSanity } from "./SanityProvider";
+import { applySeo } from "../lib/seo";
 
-const NAV_LINKS = [
-  { to: "/about", label: "About" },
-  { to: "/services", label: "Services" },
-  { to: "/process", label: "Process" },
-] as const;
+type NavPath = "/about" | "/services" | "/process" | "/blog" | "/contact";
 
 const FOOTER_SERVICES = [
   "Conversational AI",
@@ -37,6 +35,19 @@ const FOOTER_CONNECT = [
 export default function Layout() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { theme, toggle } = useThemeToggle();
+  const { posts } = useSanity();
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+
+  useEffect(() => {
+    applySeo(pathname);
+  }, [pathname]);
+
+  const navLinks: { to: NavPath; label: string }[] = [
+    { to: "/about", label: "About" },
+    { to: "/services", label: "Services" },
+    { to: "/process", label: "Process" },
+  ];
+  if (posts.length > 0) navLinks.push({ to: "/blog", label: "Blog" });
 
   return (
     <div style={{ background: T.bg, color: T.text, ...dm, minHeight: "100vh" }}>
@@ -72,7 +83,7 @@ export default function Layout() {
 
               {/* Desktop nav */}
               <div className="hidden md:flex items-center">
-                {NAV_LINKS.map(({ to, label }, i) => (
+                {navLinks.map(({ to, label }, i) => (
                   <span key={to} className="flex items-center">
                     {i > 0 && (
                       <span
@@ -185,10 +196,7 @@ export default function Layout() {
                   borderTop: `1px solid ${T.border}`,
                 }}
               >
-                {[
-                  ...NAV_LINKS,
-                  { to: "/contact" as const, label: "Contact" },
-                ].map(({ to, label }) => (
+                {[...navLinks, { to: "/contact" as const, label: "Contact" }].map(({ to, label }) => (
                   <Link
                     key={to}
                     to={to}
@@ -357,6 +365,7 @@ export default function Layout() {
               style={{ borderTop: `1px solid ${T.border}` }}
             >
               <span
+                suppressHydrationWarning
                 style={{
                   ...mono,
                   fontSize: "0.6rem",
@@ -364,7 +373,7 @@ export default function Layout() {
                   letterSpacing: "0.05em",
                 }}
               >
-                © 2025 ROMAN FORGE · ALL RIGHTS RESERVED
+                © {new Date().getFullYear()} ROMAN FORGE · ALL RIGHTS RESERVED
               </span>
               <div className="flex gap-6">
                 {[
