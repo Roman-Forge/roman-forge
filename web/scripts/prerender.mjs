@@ -23,7 +23,8 @@ try {
     `Sanity: ${content.services.length} services, ${content.industries.length} industries, ${content.faq.length} faq, ${content.processSteps.length} steps, ${content.posts.length} posts`,
   );
 } catch (error) {
-  console.warn("Sanity fetch failed; pre-rendering fallback copy.", error);
+  const detail = error instanceof Error ? error.message : String(error);
+  console.warn(`Sanity fetch failed; pre-rendering fallback copy. ${detail}`);
   content = {
     services: [],
     industries: [],

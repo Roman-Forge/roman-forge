@@ -7,6 +7,19 @@ export const sanityClient = createClient({
   useCdn: true,
 });
 
+/**
+ * The prerender runs in Node. A blocked or missing Sanity host must reject
+ * instead of hanging the Pages build; the caller falls back to empty content.
+ * Browser calls keep the client's default retry behavior.
+ */
+function fetchContent<T>(query: string, params: Record<string, unknown> = {}): Promise<T> {
+  const client =
+    typeof window === "undefined"
+      ? sanityClient.withConfig({ timeout: 8000, maxRetries: 1 })
+      : sanityClient;
+  return client.fetch<T>(query, params);
+}
+
 /* ═══════════════════════════════════════════
    TYPES
 ═══════════════════════════════════════════ */
@@ -65,7 +78,7 @@ export interface Post {
    QUERY HELPERS
 ═══════════════════════════════════════════ */
 export async function getServices(): Promise<Service[]> {
-  return sanityClient.fetch(
+  return fetchContent(
     `*[_type == "service"] | order(order asc) {
       _id, num, title, slug, iconName, description, order
     }`
@@ -73,7 +86,7 @@ export async function getServices(): Promise<Service[]> {
 }
 
 export async function getProcessSteps(): Promise<ProcessStep[]> {
-  return sanityClient.fetch(
+  return fetchContent(
     `*[_type == "processStep"] | order(order asc) {
       _id, num, title, description, timeline, order
     }`
@@ -81,7 +94,7 @@ export async function getProcessSteps(): Promise<ProcessStep[]> {
 }
 
 export async function getIndustries(): Promise<Industry[]> {
-  return sanityClient.fetch(
+  return fetchContent(
     `*[_type == "industry"] | order(order asc) {
       _id, icon, title, description, order
     }`
@@ -89,7 +102,7 @@ export async function getIndustries(): Promise<Industry[]> {
 }
 
 export async function getFAQ(): Promise<FAQItem[]> {
-  return sanityClient.fetch(
+  return fetchContent(
     `*[_type == "faqItem"] | order(order asc) {
       _id, question, answer, order
     }`
@@ -97,7 +110,7 @@ export async function getFAQ(): Promise<FAQItem[]> {
 }
 
 export async function getBlogPosts(): Promise<Post[]> {
-  return sanityClient.fetch(
+  return fetchContent(
     `*[_type == "post"] | order(publishedAt desc) {
       _id, title, slug, excerpt, publishedAt,
       mainImage { asset->{ url }, alt },
@@ -108,7 +121,7 @@ export async function getBlogPosts(): Promise<Post[]> {
 }
 
 export async function getBlogPost(slug: string): Promise<Post | null> {
-  return sanityClient.fetch(
+  return fetchContent(
     `*[_type == "post" && slug.current == $slug][0] {
       _id, title, slug, excerpt, publishedAt,
       mainImage { asset->{ url }, alt },
