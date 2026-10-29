@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "dev:functions": "wrangler pages dev ./dist",
-    "build": "vite build",
+    "build": "vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "format": "prettier --write .",

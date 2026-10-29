@@ -1,14 +1,19 @@
-import { useState } from "react";
-import { Link, Outlet } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { Link, Outlet, useRouterState } from "@tanstack/react-router";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { T, mono, dm, BracketFrame } from "./design";
 import { useThemeToggle } from "../lib/theme";
+import { useSanity } from "./SanityProvider";
+import { applySeo } from "../lib/seo";
+import AssessmentCta from "./AssessmentCta";
+import {
+  CONTACT_EMAIL,
+  CONTACT_LOCATION,
+  CONTACT_PHONE_DISPLAY,
+  CONTACT_PHONE_HREF,
+} from "../lib/siteContact";
 
-const NAV_LINKS = [
-  { to: "/about", label: "About" },
-  { to: "/services", label: "Services" },
-  { to: "/process", label: "Process" },
-] as const;
+type NavPath = "/about" | "/services" | "/process" | "/blog" | "/contact";
 
 const FOOTER_SERVICES = [
   "Conversational AI",
@@ -26,17 +31,28 @@ const FOOTER_COMPANY = [
   { to: "/contact", label: "Contact" },
 ];
 
-const FOOTER_CONNECT = [
-  { href: "mailto:jacob@romanforge.dev", label: "contact@romanforge.dev" },
+const FOOTER_SOCIAL = [
   { href: "https://linkedin.com/in/jacobroman", label: "LinkedIn" },
   { href: "https://facebook.com/profile.php?id=61575806189799", label: "Facebook" },
   { href: "https://x.com/romanforge", label: "X" },
-  { href: "tel:810-692-0143", label: "(810) 692-0143" },
 ];
 
 export default function Layout() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { theme, toggle } = useThemeToggle();
+  const { posts } = useSanity();
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+
+  useEffect(() => {
+    applySeo(pathname);
+  }, [pathname]);
+
+  const navLinks: { to: NavPath; label: string }[] = [
+    { to: "/about", label: "About" },
+    { to: "/services", label: "Services" },
+    { to: "/process", label: "Process" },
+  ];
+  if (posts.length > 0) navLinks.push({ to: "/blog", label: "Blog" });
 
   return (
     <div style={{ background: T.bg, color: T.text, ...dm, minHeight: "100vh" }}>
@@ -71,8 +87,8 @@ export default function Layout() {
               </Link>
 
               {/* Desktop nav */}
-              <div className="hidden md:flex items-center">
-                {NAV_LINKS.map(({ to, label }, i) => (
+              <div className="hidden md:flex items-center flex-wrap justify-end gap-y-2">
+                {navLinks.map(({ to, label }, i) => (
                   <span key={to} className="flex items-center">
                     {i > 0 && (
                       <span
@@ -109,42 +125,7 @@ export default function Layout() {
                     </Link>
                   </span>
                 ))}
-                <button
-                  onClick={() =>
-                    (window as any).Calendly?.initPopupWidget({
-                      url: "https://calendly.com/jacobroman1115/30min",
-                    })
-                  }
-                  className="ml-6 cursor-pointer transition-all duration-200 inline-block"
-                  style={{
-                    ...mono,
-                    fontSize: "0.75rem",
-                    fontWeight: 600,
-                    color: T.bg,
-                    background: T.gold,
-                    border: `1px solid ${T.gold}`,
-                    padding: "0.6rem 1.4rem",
-                    letterSpacing: "0.05em",
-                  }}
-                >
-                  Book a Call
-                </button>
-                <Link
-                  to="/contact"
-                  className="ml-3 no-underline transition-all duration-200 inline-block"
-                  style={{
-                    ...mono,
-                    fontSize: "0.75rem",
-                    fontWeight: 600,
-                    color: T.gold,
-                    background: "transparent",
-                    border: `1px solid ${T.gold}`,
-                    padding: "0.6rem 1.4rem",
-                    letterSpacing: "0.05em",
-                  }}
-                >
-                  Contact Us
-                </Link>
+                <AssessmentCta variant="nav" className="ml-6" />
                 <button
                   onClick={toggle}
                   className="ml-3 bg-transparent cursor-pointer p-2 transition-colors duration-200"
@@ -185,10 +166,7 @@ export default function Layout() {
                   borderTop: `1px solid ${T.border}`,
                 }}
               >
-                {[
-                  ...NAV_LINKS,
-                  { to: "/contact" as const, label: "Contact" },
-                ].map(({ to, label }) => (
+                {[...navLinks, { to: "/contact" as const, label: "Contact" }].map(({ to, label }) => (
                   <Link
                     key={to}
                     to={to}
@@ -199,18 +177,13 @@ export default function Layout() {
                     {label}
                   </Link>
                 ))}
-                <button
-                  onClick={() => {
-                    setMenuOpen(false);
-                    (window as any).Calendly?.initPopupWidget({
-                      url: "https://calendly.com/jacobroman1115/30min",
-                    });
-                  }}
-                  className="cursor-pointer text-left py-2 bg-transparent"
-                  style={{ ...mono, fontSize: "0.8rem", color: T.gold, border: "none", padding: "0.5rem 0" }}
-                >
-                  Book a Call
-                </button>
+                <AssessmentCta
+                  variant="menu"
+                  align="start"
+                  className="mt-2"
+                  onBook={() => setMenuOpen(false)}
+                  onQuestion={() => setMenuOpen(false)}
+                />
               </div>
             )}
           </BracketFrame>
@@ -250,12 +223,6 @@ export default function Layout() {
                   AI integration architecture for modern business.
                   Production-grade implementations with 10+ years of engineering
                   expertise.
-                </p>
-                <p
-                  className="mt-1"
-                  style={{ fontSize: "0.8rem", color: T.textDim }}
-                >
-                  Based in Lansing, Michigan.
                 </p>
               </div>
               <div>
@@ -330,17 +297,30 @@ export default function Layout() {
                 >
                   Connect
                 </h4>
-                {FOOTER_CONNECT.map(({ href, label }) => (
+                <a
+                  href={`mailto:${CONTACT_EMAIL}`}
+                  className="block no-underline transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                  style={{ fontSize: "0.8rem", color: T.textDim, lineHeight: 1.9 }}
+                >
+                  {CONTACT_EMAIL}
+                </a>
+                <a
+                  href={CONTACT_PHONE_HREF}
+                  className="block no-underline transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                  style={{ fontSize: "0.8rem", color: T.textDim, lineHeight: 1.9 }}
+                >
+                  {CONTACT_PHONE_DISPLAY}
+                </a>
+                <p style={{ fontSize: "0.8rem", color: T.textDim, lineHeight: 1.9 }}>
+                  {CONTACT_LOCATION}
+                </p>
+                {FOOTER_SOCIAL.map(({ href, label }) => (
                   <a
                     key={label}
                     href={href}
-                    target={href.startsWith("http") ? "_blank" : undefined}
-                    rel={
-                      href.startsWith("http")
-                        ? "noopener noreferrer"
-                        : undefined
-                    }
-                    className="block no-underline transition-colors duration-200"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block no-underline transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                     style={{
                       fontSize: "0.8rem",
                       color: T.textDim,
@@ -357,6 +337,7 @@ export default function Layout() {
               style={{ borderTop: `1px solid ${T.border}` }}
             >
               <span
+                suppressHydrationWarning
                 style={{
                   ...mono,
                   fontSize: "0.6rem",
@@ -364,7 +345,7 @@ export default function Layout() {
                   letterSpacing: "0.05em",
                 }}
               >
-                © 2025 ROMAN FORGE · ALL RIGHTS RESERVED
+                © {new Date().getFullYear()} ROMAN FORGE · ALL RIGHTS RESERVED
               </span>
               <div className="flex gap-6">
                 {[

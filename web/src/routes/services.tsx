@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
-import { Link } from "@tanstack/react-router";
-import { ChevronRight, MessageSquare, LayoutDashboard, Shuffle, FileText, Search, Layers } from "lucide-react";
+import { MessageSquare, LayoutDashboard, Shuffle, FileText, Search, Layers } from "lucide-react";
 import {
   T,
   mono,
@@ -11,14 +9,9 @@ import {
   Divider,
   BracketFrame,
 } from "../components/design";
-import {
-  getServices,
-  getIndustries,
-  getFAQ,
-  type Service,
-  type Industry,
-  type FAQItem,
-} from "../lib/sanity";
+import { useSanity } from "../components/SanityProvider";
+import AssessmentCta from "../components/AssessmentCta";
+import type { FAQItem, Industry, Service } from "../lib/sanity";
 
 const ICON_MAP: Record<string, React.ElementType> = {
   MessageSquare,
@@ -64,15 +57,7 @@ const TECH = [
 ];
 
 export default function ServicesPage() {
-  const [services, setServices] = useState<Service[]>([]);
-  const [industries, setIndustries] = useState<Industry[]>([]);
-  const [faq, setFaq] = useState<FAQItem[]>([]);
-
-  useEffect(() => {
-    getServices().then((d) => { if (d?.length) setServices(d); });
-    getIndustries().then((d) => { if (d?.length) setIndustries(d); });
-    getFAQ().then((d) => { if (d?.length) setFaq(d); });
-  }, []);
+  const { services, industries, faq } = useSanity();
 
   const displayServices = services.length ? services : FALLBACK_SERVICES;
   const displayIndustries = industries.length ? industries : FALLBACK_INDUSTRIES;
@@ -83,6 +68,7 @@ export default function ServicesPage() {
       {/* ══════ PAGE HERO ══════ */}
       <div className="container mx-auto mt-2 py-20">
         <SectionHeader
+          as="h1"
           center
           tag="Core Capabilities"
           title="What We Build"
@@ -180,13 +166,7 @@ export default function ServicesPage() {
           <p className="relative z-10 max-w-[480px] mx-auto mb-8" style={{ ...mono, fontSize: "0.8rem", color: T.textMuted, lineHeight: 1.7 }}>
             Schedule a free 30-minute assessment and get a clear AI implementation roadmap.
           </p>
-          <Link
-            to="/contact"
-            className="no-underline relative z-10 inline-flex items-center gap-2"
-            style={{ ...mono, fontSize: "0.78rem", fontWeight: 500, padding: "0.85rem 1.75rem", background: T.gold, color: T.bg, border: `1px solid ${T.gold}`, letterSpacing: "0.03em" }}
-          >
-            Book a Consultation <ChevronRight size={14} />
-          </Link>
+          <AssessmentCta align="center" className="relative z-10" />
         </BracketFrame>
       </div>
     </div>
