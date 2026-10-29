@@ -1,24 +1,10 @@
 /**
  * Public contact details for Roman Forge.
- *
- * Two addresses are in this repo, and nothing marks one of them as canonical.
- * Every mailto, visible address, JSON-LD email, and the form's Resend
- * to/from reads CONTACT_EMAIL below, so confirming the inbox is a one-line change.
- *
- *   jacob@romanforge.dev
- *     - /contact mailto and the address shown there
- *     - JSON-LD email on the organization and on Jacob Roman
- *     - footer Connect href (the visible label was contact@romanforge.dev)
- *
- *   contact@romanforge.dev
- *     - footer Connect visible label
- *     - Resend `from` and `to` in functions/api/contact.js
- *
- * CONTACT_EMAIL is set to jacob@romanforge.dev because that is the address
- * the contact page and structured data already publish. That is not a decision
- * that this inbox is the one Jacob reads.
+ * Jacob confirmed contact@romanforge.dev is the canonical inbox.
+ * Mailto links, the address shown on /contact and in the footer, JSON-LD,
+ * and the form handler's Resend to/from all read CONTACT_EMAIL.
  */
-export const CONTACT_EMAIL = "jacob@romanforge.dev";
+export const CONTACT_EMAIL = "contact@romanforge.dev";
 
 export const CONTACT_PHONE_DISPLAY = "(810) 692-0143";
 export const CONTACT_PHONE_HREF = "tel:810-692-0143";
