@@ -4,13 +4,25 @@ import { AppTree } from "./AppTree";
 import { createAppRouter, STATIC_ROUTES } from "./router";
 import { loadSanityContent, type SanityContent } from "./lib/sanityContent";
 import { renderSeoHead } from "./lib/seo";
+import { getBlogPost } from "./lib/sanity";
+import { buildSitemap } from "./lib/sitemap";
+import { isSafeSlug } from "./lib/posts";
 
-export { STATIC_ROUTES, loadSanityContent, renderSeoHead };
+export {
+  STATIC_ROUTES,
+  loadSanityContent,
+  renderSeoHead,
+  getBlogPost,
+  buildSitemap,
+  isSafeSlug,
+};
 
 export async function render(url: string, content: SanityContent) {
-  const router = createAppRouter(createMemoryHistory({ initialEntries: [url] }));
+  const router = createAppRouter(
+    createMemoryHistory({ initialEntries: [url] }),
+  );
   await router.load();
   const appHtml = renderToString(<AppTree router={router} sanity={content} />);
-  const headHtml = renderSeoHead(url);
+  const headHtml = renderSeoHead(url, content.posts);
   return { appHtml, headHtml };
 }

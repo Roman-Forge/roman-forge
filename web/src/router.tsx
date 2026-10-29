@@ -1,13 +1,26 @@
-import { createRouter, RootRoute, Route, type RouterHistory } from "@tanstack/react-router";
+import {
+  createRouter,
+  RootRoute,
+  Route,
+  type RouterHistory,
+} from "@tanstack/react-router";
 import Layout from "./components/Layout";
 import Index from "./routes/index";
 import About from "./routes/about";
 import Services from "./routes/services";
 import Contact from "./routes/contact";
 import Blog from "./routes/blog";
+import BlogPost from "./routes/blogPost";
 import Process from "./routes/process";
 
-export const STATIC_ROUTES = ["/", "/about", "/services", "/process", "/blog", "/contact"] as const;
+export const STATIC_ROUTES = [
+  "/",
+  "/about",
+  "/services",
+  "/process",
+  "/blog",
+  "/contact",
+] as const;
 
 export function createAppRouter(history: RouterHistory) {
   const rootRoute = new RootRoute({
@@ -44,6 +57,12 @@ export function createAppRouter(history: RouterHistory) {
     component: Blog,
   });
 
+  const blogPostRoute = new Route({
+    getParentRoute: () => rootRoute,
+    path: "/blog/$slug",
+    component: BlogPost,
+  });
+
   const processRoute = new Route({
     getParentRoute: () => rootRoute,
     path: "/process",
@@ -56,6 +75,7 @@ export function createAppRouter(history: RouterHistory) {
     servicesRoute,
     contactRoute,
     blogRoute,
+    blogPostRoute,
     processRoute,
   ]);
 

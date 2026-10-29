@@ -14,7 +14,11 @@ function stubPosthogOnServer(): Plugin {
     enforce: "pre",
     resolveId(id, _importer, options) {
       if (!options?.ssr) return null;
-      if (id === "posthog-js" || id === "posthog-js/react" || id.startsWith("posthog-js/")) {
+      if (
+        id === "posthog-js" ||
+        id === "posthog-js/react" ||
+        id.startsWith("posthog-js/")
+      ) {
         return stubId;
       }
       return null;
@@ -32,14 +36,30 @@ function stubPosthogOnServer(): Plugin {
 }
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react(), stubPosthogOnServer()],
-  optimizeDeps: {
-    include: ["@sanity/client"],
-  },
-  server: {
-    proxy: {
-      "/api": "http://localhost:8788"
+export default defineConfig(async () => {
+  const plugins: Plugin[] = [react(), stubPosthogOnServer()];
+  // Draft fixtures are a local dev server only. Production builds never load them.
+  if (
+    process.env.NODE_ENV !== "production" &&
+    process.env.VITE_BLOG_FIXTURES === "1"
+  ) {
+    const mod = (await import("./scripts/blog-fixtures-plugin.mjs")) as {
+      blogFixtureDevPlugin: () => Plugin;
+    };
+    plugins.push(mod.blogFixtureDevPlugin());
+  }
+  return {
+    plugins,
+    optimizeDeps: {
+      include: ["@sanity/client"],
     },
-  },
+    server: {
+      proxy: {
+        "/api": "http://localhost:8788",
+      },
+    },
+    ssr: {
+      noExternal: ["@portabletext/react", "@portabletext/toolkit"],
+    },
+  };
 });

@@ -52,24 +52,40 @@ export function readBootContent(): SanityContent | null {
   }
 }
 
+async function safe<T>(
+  label: string,
+  task: () => Promise<T>,
+  fallback: T,
+): Promise<T> {
+  try {
+    const value = await task();
+    return value ?? fallback;
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : String(error);
+    console.warn(`Sanity ${label} query failed: ${detail}`);
+    return fallback;
+  }
+}
+
 /**
  * Fetch the collections the site already renders. Returns JSON-safe data so
- * the pre-render and the client boot snapshot stay identical.
+ * the pre-render and the client boot snapshot stay identical. One failed
+ * query does not drop the others, and a failed fetch does not throw.
  */
 export async function loadSanityContent(): Promise<SanityContent> {
   const [services, industries, faq, processSteps, posts] = await Promise.all([
-    getServices(),
-    getIndustries(),
-    getFAQ(),
-    getProcessSteps(),
-    getBlogPosts(),
+    safe("services", getServices, []),
+    safe("industries", getIndustries, []),
+    safe("faq", getFAQ, []),
+    safe("process", getProcessSteps, []),
+    safe("posts", getBlogPosts, []),
   ]);
   const content: SanityContent = {
-    services: services ?? [],
-    industries: industries ?? [],
-    faq: faq ?? [],
-    processSteps: processSteps ?? [],
-    posts: posts ?? [],
+    services,
+    industries,
+    faq,
+    processSteps,
+    posts,
   };
   return JSON.parse(JSON.stringify(content)) as SanityContent;
 }
