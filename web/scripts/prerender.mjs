@@ -1,7 +1,14 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { loadSanityContent, render, STATIC_ROUTES } from "../dist-ssr/entry-server.js";
+import {
+  buildSitemap,
+  getBlogPost,
+  isSafeSlug,
+  loadSanityContent,
+  render,
+  STATIC_ROUTES,
+} from "../dist-ssr/entry-server.js";
 
 const webRoot = join(dirname(fileURLToPath(import.meta.url)), "..");
 const dist = join(webRoot, "dist");
@@ -34,12 +41,47 @@ try {
   };
 }
 
-const payload = JSON.stringify(content).replace(/</g, "\\u003c");
-const sanityTag = `<script type="application/json" id="rf-sanity">${payload}</script>`;
+const publishedPosts = [];
+for (const summary of content.posts) {
+  const slug = summary?.slug?.current;
+  if (!summary?.title || !isSafeSlug(slug ?? "")) {
+    console.warn(`Skipping a post with no title or an unsafe slug (${slug ?? "missing"})`);
+    continue;
+  }
+  let post = summary;
+  try {
+    const full = await getBlogPost(slug);
+    if (full) post = { ...summary, ...full, slug: { current: slug } };
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : String(error);
+    console.warn(`Post ${slug} body could not be loaded; pre-rendering the summary. ${detail}`);
+  }
+  publishedPosts.push(post);
+}
+
+const summaries = publishedPosts.map((post) => {
+  if (!post.body) return post;
+  const { body: _body, ...rest } = post;
+  return rest;
+});
+const baseContent = { ...content, posts: summaries };
+const routes = STATIC_ROUTES.map((route) => ({ route, content: baseContent }));
+for (const post of publishedPosts) {
+  routes.push({
+    route: `/blog/${post.slug.current}`,
+    content: {
+      ...baseContent,
+      posts: summaries.map((item) => (item.slug.current === post.slug.current ? post : item)),
+    },
+  });
+}
+
 const titles = new Set();
 
-for (const route of STATIC_ROUTES) {
-  const { appHtml, headHtml } = await render(route, content);
+for (const { route, content: pageContent } of routes) {
+  const { appHtml, headHtml } = await render(route, pageContent);
+  const payload = JSON.stringify(pageContent).replace(/</g, "\\u003c");
+  const sanityTag = `<script type="application/json" id="rf-sanity">${payload}</script>`;
   const start = template.indexOf(SLOT_START);
   const end = template.indexOf(SLOT_END);
   let html =
@@ -66,6 +108,16 @@ for (const route of STATIC_ROUTES) {
   if (title !== ogTitle) throw new Error(`${route} title/og:title mismatch`);
   if (headHtml.includes("og:logo")) throw new Error(`${route} still has og:logo`);
   if (!headHtml.includes("application/ld+json")) throw new Error(`${route} is missing JSON-LD`);
+  if (route.startsWith("/blog/")) {
+    if (!headHtml.includes("BlogPosting") || !headHtml.includes("Article")) {
+      throw new Error(`${route} is missing Article/BlogPosting JSON-LD`);
+    }
+    if (!headHtml.includes('property="og:type" content="article"')) {
+      throw new Error(`${route} og:type should be article`);
+    }
+  } else if (headHtml.includes('content="article"')) {
+    throw new Error(`${route} should stay og:type website`);
+  }
   const expectedCanonical =
     route === "/" ? "https://romanforge.dev/" : `https://romanforge.dev${route}`;
   if (canonical !== expectedCanonical) {
@@ -89,33 +141,16 @@ const home = readFileSync(join(dist, "index.html"), "utf8");
 if (!home.includes(year) || !home.includes("ALL RIGHTS RESERVED")) {
   throw new Error(`footer year is not ${year}`);
 }
-if (content.posts.length === 0 && home.includes('href="/blog"')) {
+if (publishedPosts.length === 0 && home.includes('href="/blog"')) {
   throw new Error("home HTML links to /blog even though there are no posts");
 }
-if (content.posts.length > 0 && !home.includes('href="/blog"')) {
+if (publishedPosts.length > 0 && !home.includes('href="/blog"')) {
   throw new Error("home HTML should link to /blog because posts exist");
 }
 
-const sitemapRoutes = STATIC_ROUTES.filter(
-  (route) => route !== "/blog" || content.posts.length > 0,
-);
-const meta = {
-  "/": ["weekly", "1.0"],
-  "/about": ["monthly", "0.8"],
-  "/services": ["monthly", "0.8"],
-  "/process": ["monthly", "0.7"],
-  "/blog": ["weekly", "0.7"],
-  "/contact": ["yearly", "0.6"],
-};
-const urls = sitemapRoutes
-  .map((route) => {
-    const loc = route === "/" ? "https://romanforge.dev/" : `https://romanforge.dev${route}`;
-    const [changefreq, priority] = meta[route];
-    return `  <url>\n    <loc>${loc}</loc>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
-  })
-  .join("\n");
-const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
+const sitemap = buildSitemap(publishedPosts);
 writeFileSync(join(dist, "sitemap.xml"), sitemap);
+const blogInSitemap = publishedPosts.length > 0;
 console.log(
-  `sitemap ${content.posts.length > 0 ? "includes" : "omits"} /blog (${sitemapRoutes.length} urls)`,
+  `sitemap ${blogInSitemap ? "includes" : "omits"} /blog and lists ${publishedPosts.length} posts`,
 );

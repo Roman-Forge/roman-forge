@@ -5,6 +5,7 @@ import {
   readBootContent,
   type SanityContent,
 } from "../lib/sanityContent";
+import type { Post } from "../lib/sanity";
 
 type SanityState = {
   content: SanityContent;
@@ -15,6 +16,15 @@ const SanityContext = createContext<SanityState>({
   content: EMPTY_CONTENT,
   ready: false,
 });
+
+function mergePosts(previous: Post[], next: Post[]): Post[] {
+  const prior = new Map(previous.map((post) => [post.slug.current, post]));
+  return next.map((post) => {
+    const earlier = prior.get(post.slug.current);
+    if (post.body || !earlier?.body) return post;
+    return { ...post, body: earlier.body };
+  });
+}
 
 export function SanityProvider({
   initial,
@@ -34,7 +44,14 @@ export function SanityProvider({
     let cancelled = false;
     loadSanityContent()
       .then((content) => {
-        if (!cancelled) setState({ content, ready: true });
+        if (cancelled) return;
+        setState((current) => ({
+          content: {
+            ...content,
+            posts: mergePosts(current.content.posts, content.posts),
+          },
+          ready: true,
+        }));
       })
       .catch(() => {
         if (!cancelled) setState((current) => ({ ...current, ready: true }));
@@ -44,7 +61,9 @@ export function SanityProvider({
     };
   }, []);
 
-  return <SanityContext.Provider value={state}>{children}</SanityContext.Provider>;
+  return (
+    <SanityContext.Provider value={state}>{children}</SanityContext.Provider>
+  );
 }
 
 export function useSanity(): SanityContent & { ready: boolean } {

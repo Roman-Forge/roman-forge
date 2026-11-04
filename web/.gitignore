@@ -4,3 +4,6 @@ dist
 dist-ssr
 .env
 .wrangler
+# Unpublished draft posts used only for local rendering checks
+fixtures
+fixture-preview

@@ -105,6 +105,7 @@ export default function Layout() {
                     )}
                     <Link
                       to={to}
+                      activeOptions={{ exact: true }}
                       className="py-1 transition-colors duration-200 no-underline"
                       style={{
                         ...mono,
@@ -170,6 +171,7 @@ export default function Layout() {
                   <Link
                     key={to}
                     to={to}
+                    activeOptions={{ exact: true }}
                     onClick={() => setMenuOpen(false)}
                     className="no-underline py-2 text-left"
                     style={{ ...mono, fontSize: "0.8rem", color: T.textMuted }}
